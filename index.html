@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logística & Mudanzas | Mudanzas Integrales y Fletes en Santiago</title>
+  <meta name="description" content="Empresa de mudanzas en Santiago de Chile. Mudanzas integrales para casas y oficinas con metodología Cuidado Absoluto. Fletes express. Sin costos ocultos. Llámanos al +56 9 6182 2888." />
+  <meta name="keywords" content="mudanzas Santiago, fletes Santiago, empresa de mudanzas Chile, mudanza integral, flete express Santiago" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ─── RESET & VARIABLES ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0B1F3A;
+      --navy-mid:   #122844;
+      --navy-light: #1a3558;
+      --ivory:      #F7F4EE;
+      --ivory-dark: #EDE9E0;
+      --red:        #B03030;
+      --red-hover:  #8f2424;
+      --white:      #FFFFFF;
+      --nav-bg:     rgba(8, 16, 30, 0.90);
+      --foot-bg:    rgba(6, 12, 22, 0.97);
+      --text-body:  #2c3e50;
+      --text-muted: #6b7a8d;
+      --border:     rgba(11, 31, 58, 0.1);
+      --shadow-sm:  0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md:  0 8px 32px rgba(0,0,0,0.12);
+      --shadow-lg:  0 20px 60px rgba(0,0,0,0.18);
+      --radius:     12px;
+      --font-head:  'Syne', sans-serif;
+      --font-body:  'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--ivory);
+      color: var(--text-body);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ───────────────────────────────────────────────────────── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+
+    .nav-logo-text span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      letter-spacing: 0.02em;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--red-hover) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(8,16,30,0.97);
+      backdrop-filter: blur(16px);
+      padding: 1.5rem 2rem 2rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ─── HERO ─────────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80&auto=format');
+      background-size: cover;
+      background-position: center 40%;
+      opacity: 0.18;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(11,31,58,0.98) 0%,
+        rgba(11,31,58,0.82) 50%,
+        rgba(176,48,48,0.2) 100%
+      );
+    }
+
+    .hero-clip {
+      position: absolute;
+      bottom: -2px; right: -2px;
+      width: 45%;
+      height: 100%;
+      background: var(--red);
+      clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: 0.06;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(176,48,48,0.15);
+      border: 1px solid rgba(176,48,48,0.35);
+      color: #e88;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge i { font-size: 0.75rem; }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .accent { color: var(--red); }
+
+    .hero-subtitle {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius);
+      letter-spacing: 0.02em;
+      transition: all 0.25s;
+      border: 2px solid var(--red);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-hover);
+      border-color: var(--red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(176,48,48,0.35);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius);
+      border: 2px solid rgba(255,255,255,0.25);
+      transition: all 0.25s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero-stat-num span { color: var(--red); }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .hero-image-block {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-card {
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 4/3;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+
+    .hero-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-img-badge {
+      position: absolute;
+      bottom: -16px; left: -20px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-icon {
+      width: 40px; height: 40px;
+      background: var(--red);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .badge-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .badge-text small {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .hero-img-badge2 {
+      position: absolute;
+      top: -16px; right: -16px;
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 0.9rem 1.2rem;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .badge2-num {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .badge2-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── SECTION BASE ─────────────────────────────────────────────────── */
+    section { padding: 6rem 0; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--red);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ─── SERVICIOS ────────────────────────────────────────────────────── */
+    #servicios { background: var(--white); }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--ivory);
+      border-radius: 18px;
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(176,48,48,0.15);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: rgba(11,31,58,0.07);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 1.4rem;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .service-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.7rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .service-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: rgba(176,48,48,0.08);
+      padding: 0.3rem 0.7rem;
+      border-radius: 50px;
+    }
+
+    /* ─── CUIDADO ABSOLUTO ─────────────────────────────────────────────── */
+    #metodologia {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #metodologia::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(176,48,48,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .metodologia-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .metod-left .section-label { color: #e88; }
+    .metod-left .section-label::before { background: #e88; }
+
+    .metod-left .section-title { color: var(--white); }
+    .metod-left .section-sub { color: rgba(255,255,255,0.55); }
+
+    .metod-brand {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+    }
+
+    .metod-brand i { color: var(--red); font-size: 1.3rem; }
+
+    .metod-brand-text strong {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .metod-brand-text small {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .pillars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      transition: all 0.3s;
+    }
+
+    .pillar-item:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(176,48,48,0.3);
+    }
+
+    .pillar-num {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: rgba(176,48,48,0.25);
+      line-height: 1;
+      min-width: 32px;
+      margin-top: 2px;
+    }
+
+    .pillar-body strong {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .pillar-body p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+    }
+
+    /* ─── TESTIMONIOS ──────────────────────────────────────────────────── */
+    #testimonios { background: var(--ivory); }
+
+    .testimonios-header { margin-bottom: 3.5rem; }
+
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .testimonial-quote {
+      font-size: 2.5rem;
+      color: var(--red);
+      font-family: Georgia, serif;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      opacity: 0.4;
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .stars i { color: #f59e0b; font-size: 0.85rem; }
+
+    .testimonial-text {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .author-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--navy);
+    }
+
+    .author-role {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── MAPA ─────────────────────────────────────────────────────────── */
+    #ubicacion { background: var(--white); padding: 5rem 0; }
+
+    .ubicacion-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .ubicacion-info .section-title { margin-bottom: 1.2rem; }
+
+    .ubicacion-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .ubicacion-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .ubicacion-item i {
+      width: 36px; height: 36px;
+      background: rgba(11,31,58,0.07);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      height: 380px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ─── CONTACTO ─────────────────────────────────────────────────────── */
+    #contacto {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contacto::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(176,48,48,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contacto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contacto-left .section-label { color: #e88; }
+    .contacto-left .section-label::before { background: #e88; }
+    .contacto-left .section-title { color: var(--white); }
+    .contacto-left .section-sub { color: rgba(255,255,255,0.55); }
+
+    .contacto-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .contacto-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      text-decoration: none;
+      transition: all 0.25s;
+      color: inherit;
+    }
+
+    .contacto-option:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(176,48,48,0.35);
+      transform: translateX(4px);
+    }
+
+    .opt-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .opt-icon.wsp { background: #25D366; color: white; }
+    .opt-icon.phone { background: var(--red); color: white; }
+
+    .opt-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .opt-text small {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ─── FORMULARIO ───────────────────────────────────────────────────── */
+    .contact-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .contact-form h3 {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(176,48,48,0.6);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .form-group select option { background: var(--navy); color: white; }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 0.95rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(176,48,48,0.4);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────────────────── */
+    footer {
+      background: var(--foot-bg);
+      padding: 3rem 0 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+
+    .footer-col ul a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .social-link:hover {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    /* ─── WHATSAPP FLOAT ───────────────────────────────────────────────── */
+    .wsp-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wsp-float-btn {
+      width: 60px; height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .wsp-float-btn::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.35);
+      animation: wspPulse 2s ease infinite;
+    }
+
+    .wsp-float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+    }
+
+    .wsp-label {
+      background: var(--white);
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      white-space: nowrap;
+      transform: translateX(8px);
+      opacity: 0;
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+
+    .wsp-float:hover .wsp-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @keyframes wspPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 0; }
+    }
+
+    /* ─── SUCCESS MESSAGE ──────────────────────────────────────────────── */
+    .form-success {
+      display: none;
+      background: rgba(37,211,102,0.1);
+      border: 1px solid rgba(37,211,102,0.25);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      color: #6ee7b7;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonios-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-image-block { display: none; }
+      .metodologia-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .ubicacion-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 4rem 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonios-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .wsp-float { bottom: 1.5rem; right: 1.5rem; }
+      .contact-form { padding: 1.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { width: 100%; justify-content: center; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ NAVBAR ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="#inicio" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fas fa-truck-moving"></i></div>
+      <span class="nav-logo-text">Logística &amp; <span>Mudanzas</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#metodologia">Metodología</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20una%20mudanza." target="_blank" rel="noopener" class="nav-cta">Cotizar ahora</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="#metodologia" onclick="closeMobile()">Metodología</a>
+    <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
+    <a href="#ubicacion" onclick="closeMobile()">Ubicación</a>
+    <a href="#contacto" onclick="closeMobile()">Contacto</a>
+    <a href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20una%20mudanza." target="_blank" rel="noopener" style="color:#25D366;border-color:rgba(37,211,102,0.2);">
+      <i class="fab fa-whatsapp"></i>&nbsp; Cotizar por WhatsApp
+    </a>
+  </div>
+
+
+  <!-- ═══ HERO ══════════════════════════════════════════════════════════ -->
+  <section id="inicio" class="hero" aria-label="Portada">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-gradient" aria-hidden="true"></div>
+    <div class="hero-clip" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fas fa-shield-halved"></i>
+          Metodología Cuidado Absoluto
+        </div>
+        <h1 class="hero-title">
+          Tu mudanza, <span class="accent">sin riesgos</span><br />y sin sorpresas
+        </h1>
+        <p class="hero-subtitle">
+          Mudamos casas, oficinas y activos empresariales en Santiago con personal capacitado, flota monitoreada y puntualidad garantizada. Precios claros desde el primer contacto.
+        </p>
+        <div class="hero-actions">
+          <a href="https://wa.me/56961822888?text=Hola%2C%20quiero%20cotizar%20una%20mudanza." target="_blank" rel="noopener" class="btn-primary">
+            <i class="fab fa-whatsapp"></i> Cotizar ahora
+          </a>
+          <a href="#servicios" class="btn-secondary">
+            <i class="fas fa-arrow-down"></i> Ver servicios
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">500<span>+</span></div>
+            <div class="hero-stat-label">Mudanzas realizadas</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100<span>%</span></div>
+            <div class="hero-stat-label">Sin daños reportados</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">4.9<span>★</span></div>
+            <div class="hero-stat-label">Calificación clientes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-block" aria-hidden="true">
+        <div class="hero-img-card">
+          <img src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=900&q=80&auto=format" alt="Equipo profesional de mudanzas" loading="eager" />
+          <div class="hero-img-badge">
+            <div class="badge-icon"><i class="fas fa-check-double"></i></div>
+            <div class="badge-text">
+              <strong>Sin costos ocultos</strong>
+              <small>Precio fijo desde el inicio</small>
+            </div>
+          </div>
+          <div class="hero-img-badge2">
+            <div class="badge2-num">24h</div>
+            <div class="badge2-label">Respuesta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ SERVICIOS ═════════════════════════════════════════════════════ -->
+  <section id="servicios">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="section-label">Nuestros servicios</div>
+          <h2 class="section-title">Todo lo que necesitas<br />para un traslado exitoso</h2>
+        </div>
+        <p class="section-sub">Cobertura completa en Santiago y sus comunas. Soluciones a medida para hogares, familias y empresas.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-house-chimney-window"></i></div>
+          <h3>Mudanza Residencial</h3>
+          <p>Trasladamos tu hogar con el cuidado que merece. Embalaje técnico incluido para muebles, electrodomésticos, artículos frágiles y objetos de valor.</p>
+          <span class="service-tag">Casa y departamento</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-building"></i></div>
+          <h3>Mudanza de Oficina</h3>
+          <p>Relocalizamos tu empresa sin interrumpir operaciones. Gestión coordinada de equipos tecnológicos, mobiliario y archivos con trazabilidad total.</p>
+          <span class="service-tag">Empresas y pymes</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-truck-fast"></i></div>
+          <h3>Flete Express</h3>
+          <p>Retiro y entrega rápida en Santiago. Ideal para artículos individuales, compras grandes o traslados puntuales sin contratar servicio completo.</p>
+          <span class="service-tag">Mismo día disponible</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-box-open"></i></div>
+          <h3>Embalaje Técnico</h3>
+          <p>Protección profesional de cada pieza. Materiales de primera calidad: cajas dobles, stretch film, esquineros y relleno absorbente anti-impacto.</p>
+          <span class="service-tag">Frágiles y arte</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-warehouse"></i></div>
+          <h3>Bodegaje Temporal</h3>
+          <p>¿Necesitas guardar tus bienes mientras concluyes el traslado? Ofrecemos almacenamiento seguro, controlado y con acceso programado.</p>
+          <span class="service-tag">Corto y largo plazo</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-chess-knight"></i></div>
+          <h3>Traslado de Activos Empresariales</h3>
+          <p>Movimiento de maquinaria, equipos especializados y activos de alto valor. Protocolo de seguridad reforzado con documentación y seguro disponible.</p>
+          <span class="service-tag">Alto valor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ METODOLOGÍA CUIDADO ABSOLUTO ══════════════════════════════════ -->
+  <section id="metodologia">
+    <div class="container">
+      <div class="metodologia-inner">
+        <div class="metod-left">
+          <div class="section-label">Nuestro diferenciador</div>
+          <h2 class="section-title">Metodología<br />Cuidado Absoluto</h2>
+          <p class="section-sub">
+            Diseñada para eliminar el mayor miedo de cada cliente: que sus cosas lleguen dañadas, tarde o a un precio diferente al acordado. No existe ese riesgo con nosotros.
+          </p>
+          <div class="metod-brand">
+            <i class="fas fa-certificate"></i>
+            <div class="metod-brand-text">
+              <strong>Cuidado Absoluto™</strong>
+              <small>Estándar de servicio Logística &amp; Mudanzas</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="pillars-list">
+          <div class="pillar-item">
+            <div class="pillar-num">01</div>
+            <div class="pillar-body">
+              <strong>Personal capacitado en embalaje técnico</strong>
+              <p>Nuestro equipo recibe formación específica en manejo de objetos frágiles, arte, electrónica y mobiliario de diseño. No es personal improvisado.</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-num">02</div>
+            <div class="pillar-body">
+              <strong>Flota monitoreada en tiempo real</strong>
+              <p>Todos nuestros vehículos tienen seguimiento GPS activo. Sabes exactamente dónde están tus bienes en todo momento del traslado.</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-num">03</div>
+            <div class="pillar-body">
+              <strong>Puntualidad como compromiso</strong>
+              <p>Llegamos en el horario pactado. Planificamos cada operación con tiempo de margen, sin excusas y con comunicación proactiva si algo cambia.</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-num">04</div>
+            <div class="pillar-body">
+              <strong>Precio fijo, sin costos ocultos</strong>
+              <p>Lo que cotizamos es lo que se cobra. Sin cobros de último minuto por escaleras, distancia extra o tiempo adicional no informado previamente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ TESTIMONIOS ═══════════════════════════════════════════════════ -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="testimonios-header">
+        <div class="section-label">Lo que dicen nuestros clientes</div>
+        <h2 class="section-title">Mudanzas que generan<br />tranquilidad real</h2>
+      </div>
+
+      <div class="testimonios-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Mudamos toda la oficina en un fin de semana y el lunes abrimos sin problemas. Nada se perdió, nada se rompió. La coordinación fue impecable de principio a fin.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">CM</div>
+            <div>
+              <div class="author-name">Claudia Morales</div>
+              <div class="author-role">Gerente Administrativa · Providencia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Tenía pánico de moverme con tres hijos y años de cosas acumuladas. El equipo llegó puntual, embalaron todo con cuidado y pagué exactamente lo que me cotizaron. Recomendadísimos.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RV</div>
+            <div>
+              <div class="author-name">Roberto Valenzuela</div>
+              <div class="author-role">Cliente familiar · Las Condes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">Usé el flete express para un piano de cola. Pensé que sería un problema enorme. El equipo llegó con el equipamiento correcto, lo protegieron muy bien y llegó perfecto. Excelente servicio.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AP</div>
+            <div>
+              <div class="author-name">Andrea Paredes</div>
+              <div class="author-role">Profesora de música · Ñuñoa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ UBICACIÓN ═════════════════════════════════════════════════════ -->
+  <section id="ubicacion">
+    <div class="container">
+      <div class="ubicacion-inner">
+        <div class="ubicacion-info">
+          <div class="section-label">Dónde operamos</div>
+          <h2 class="section-title">Cobertura en<br />Santiago de Chile</h2>
+          <p class="section-sub">Operamos en toda la Región Metropolitana. Desde Maipú hasta La Florida, desde Pudahuel hasta La Reina.</p>
+
+          <div class="ubicacion-details">
+            <div class="ubicacion-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Santiago, Región Metropolitana, Chile</span>
+            </div>
+            <div class="ubicacion-item">
+              <i class="fas fa-clock"></i>
+              <span>Lunes a Sábado: 08:00 – 19:00 hrs</span>
+            </div>
+            <div class="ubicacion-item">
+              <i class="fas fa-mobile-alt"></i>
+              <span>+56 9 6182 2888</span>
+            </div>
+            <div class="ubicacion-item">
+              <i class="fas fa-truck-moving"></i>
+              <span>Servicio disponible en toda la RM</span>
+            </div>
+          </div>
+
+          <a href="https://wa.me/56961822888?text=Hola%2C%20quiero%20saber%20si%20llegan%20a%20mi%20comuna." target="_blank" rel="noopener" class="btn-primary" style="margin-top:0.5rem; display:inline-flex;">
+            <i class="fab fa-whatsapp"></i> Consultar mi comuna
+          </a>
+        </div>
+
+        <div class="map-container" role="region" aria-label="Mapa de Santiago de Chile">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-70.80%2C-33.62%2C-70.48%2C-33.33&layer=mapnik&marker=-33.4569%2C-70.6483"
+            loading="lazy"
+            title="Mapa Santiago de Chile – Logística &amp; Mudanzas"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ CONTACTO ══════════════════════════════════════════════════════ -->
+  <section id="contacto">
+    <div class="container">
+      <div class="contacto-inner">
+        <div class="contacto-left">
+          <div class="section-label">Hablemos</div>
+          <h2 class="section-title">¿Listo para tu mudanza<br />sin estrés?</h2>
+          <p class="section-sub">
+            Cotiza en minutos. Respuesta inmediata. Sin compromisos hasta confirmar el servicio.
+          </p>
+
+          <div class="contacto-options">
+            <a href="https://wa.me/56961822888?text=Hola%2C%20quiero%20cotizar%20una%20mudanza." target="_blank" rel="noopener" class="contacto-option">
+              <div class="opt-icon wsp"><i class="fab fa-whatsapp"></i></div>
+              <div class="opt-text">
+                <strong>Escríbenos por WhatsApp</strong>
+                <small>Respuesta en menos de 1 hora · +56 9 6182 2888</small>
+              </div>
+              <i class="fas fa-chevron-right" style="color:rgba(255,255,255,0.2); margin-left:auto;"></i>
+            </a>
+
+            <a href="tel:+56961822888" class="contacto-option">
+              <div class="opt-icon phone"><i class="fas fa-phone"></i></div>
+              <div class="opt-text">
+                <strong>Llamar directamente</strong>
+                <small>Lunes a Sábado, 08:00 – 19:00 hrs</small>
+              </div>
+              <i class="fas fa-chevron-right" style="color:rgba(255,255,255,0.2); margin-left:auto;"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Solicita tu cotización</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono / WhatsApp</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX" required />
+            </div>
+            <div class="form-group">
+              <label for="servicio">Servicio requerido</label>
+              <select id="servicio" name="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option value="residencial">Mudanza Residencial</option>
+                <option value="oficina">Mudanza de Oficina</option>
+                <option value="flete">Flete Express</option>
+                <option value="embalaje">Embalaje Técnico</option>
+                <option value="bodegaje">Bodegaje Temporal</option>
+                <option value="activos">Traslado de Activos Empresariales</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Cuéntanos brevemente</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Ej: Mudanza desde Providencia a Las Condes, 3 dormitorios, fecha estimada: próximo mes..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+            </button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>&nbsp; ¡Listo! Te estamos redirigiendo a WhatsApp.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#inicio" class="nav-logo" style="margin-bottom:0.5rem; display:inline-flex;">
+            <div class="nav-logo-icon"><i class="fas fa-truck-moving"></i></div>
+            <span class="nav-logo-text">Logística &amp; <span>Mudanzas</span></span>
+          </a>
+          <p>Empresa especializada en mudanzas integrales y fletes express en Santiago de Chile. Metodología Cuidado Absoluto en cada traslado.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Mudanza Residencial</a></li>
+            <li><a href="#servicios">Mudanza de Oficina</a></li>
+            <li><a href="#servicios">Flete Express</a></li>
+            <li><a href="#servicios">Embalaje Técnico</a></li>
+            <li><a href="#servicios">Bodegaje Temporal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/56961822888" target="_blank" rel="noopener"><i class="fab fa-whatsapp" style="color:#25D366"></i> +56 9 6182 2888</a></li>
+            <li><a href="tel:+56961822888"><i class="fas fa-phone"></i> Llamar ahora</a></li>
+            <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Santiago, RM</a></li>
+            <li><a href="#metodologia"><i class="fas fa-shield-halved"></i> Cuidado Absoluto</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Logística &amp; Mudanzas · Santiago de Chile · Todos los derechos reservados</p>
+        <div class="footer-social">
+          <a href="https://wa.me/56961822888" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══ WHATSAPP FLOTANTE ═════════════════════════════════════════════ -->
+  <div class="wsp-float" aria-label="Contactar por WhatsApp">
+    <span class="wsp-label">¡Escríbenos ahora!</span>
+    <a href="https://wa.me/56961822888?text=Hola%2C%20quiero%20cotizar%20una%20mudanza." target="_blank" rel="noopener" class="wsp-float-btn" aria-label="Abrir WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+
+  <!-- ═══ SCRIPTS ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Hamburger menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobile();
+      }
+    });
+
+    // ── Form → WhatsApp redirect ──
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre   = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const servicio = document.getElementById('servicio').value;
+      const mensaje  = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !telefono || !servicio) {
+        alert('Por favor completa los campos requeridos: Nombre, Teléfono y Servicio.');
+        return;
+      }
+
+      const servicioLabels = {
+        residencial: 'Mudanza Residencial',
+        oficina:     'Mudanza de Oficina',
+        flete:       'Flete Express',
+        embalaje:    'Embalaje Técnico',
+        bodegaje:    'Bodegaje Temporal',
+        activos:     'Traslado de Activos Empresariales'
+      };
+
+      const text = `Hola, mi nombre es ${nombre}. Mi número es ${telefono}. Necesito una cotización para: ${servicioLabels[servicio] || servicio}. ${mensaje ? 'Detalles: ' + mensaje : ''}`;
+
+      document.getElementById('formSuccess').style.display = 'block';
+
+      setTimeout(() => {
+        window.open(`https://wa.me/56961822888?text=${encodeURIComponent(text)}`, '_blank');
+      }, 800);
+    });
+
+    // ── Navbar background on scroll ──
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 60) {
+        navbar.style.background = 'rgba(6, 12, 22, 0.97)';
+      } else {
+        navbar.style.background = 'rgba(8, 16, 30, 0.90)';
+      }
+    });
+  </script>
+
+</body>
+</html>
