@@ -8,7 +8,7 @@
   <meta name="keywords" content="mudanzas Santiago, fletes Santiago, empresa de mudanzas Chile, mudanza integral, flete express Santiago" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
@@ -33,7 +33,7 @@
       --shadow-md:  0 8px 32px rgba(0,0,0,0.12);
       --shadow-lg:  0 20px 60px rgba(0,0,0,0.18);
       --radius:     12px;
-      --font-head:  'Syne', sans-serif;
+      --font-head:  'Outfit', sans-serif;
       --font-body:  'DM Sans', sans-serif;
     }
 
@@ -737,9 +737,9 @@
 
     .ubicacion-inner {
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 4rem;
-      align-items: center;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      align-items: start;
     }
 
     .ubicacion-info .section-title { margin-bottom: 1.2rem; }
@@ -769,12 +769,91 @@
       flex-shrink: 0;
     }
 
+    /* Tarjetas operacionales */
+    .ubi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: all 0.25s;
+    }
+
+    .ubi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+      border-color: rgba(176,48,48,0.2);
+    }
+
+    .ubi-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      margin: 0 auto 0.75rem;
+    }
+
+    .ubi-card-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .ubi-card-value {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* Comunas chips */
+    .comunas-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .comuna-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-body);
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .comuna-chip i { font-size: 0.45rem; color: var(--red); }
+
+    .comuna-chip:hover {
+      background: rgba(176,48,48,0.06);
+      border-color: rgba(176,48,48,0.3);
+      color: var(--navy);
+    }
+
+    .comuna-chip.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+      font-weight: 600;
+    }
+
+    .comuna-chip.active i { color: rgba(255,255,255,0.6); }
+
     .map-container {
       border-radius: 20px;
       overflow: hidden;
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border);
-      height: 380px;
+      height: 360px;
     }
 
     .map-container iframe {
@@ -1089,6 +1168,46 @@
       50% { transform: scale(1.2); opacity: 0; }
     }
 
+    /* ─── HEARTBEAT ANIMATION (botón cotizar) ──────────────────────────── */
+    @keyframes heartbeat {
+      0%,100% { transform: scale(1); }
+      14%      { transform: scale(1.06); }
+      28%      { transform: scale(1); }
+      42%      { transform: scale(1.04); }
+      56%      { transform: scale(1); }
+    }
+
+    .btn-primary { animation: heartbeat 2.8s ease-in-out infinite; }
+    .btn-primary:hover { animation: none; }
+
+    /* ─── ROTATE ICON (certificado Cuidado Absoluto) ────────────────────── */
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .metod-brand i { animation: slowSpin 8s linear infinite; display: inline-block; }
+
+    /* ─── PILLAR HOVER GLOW ────────────────────────────────────────────── */
+    .pillar-item {
+      cursor: default;
+    }
+    .pillar-item:hover {
+      background: rgba(176,48,48,0.08) !important;
+      border-color: rgba(176,48,48,0.55) !important;
+      box-shadow: 0 0 0 1px rgba(176,48,48,0.35), 0 6px 28px rgba(176,48,48,0.18) !important;
+      transform: translateX(4px);
+    }
+
+    /* ─── SERVICE CARD GLOW ────────────────────────────────────────────── */
+    .service-card:hover {
+      box-shadow: 0 0 0 1px rgba(176,48,48,0.3), 0 10px 36px rgba(176,48,48,0.15) !important;
+    }
+
+    /* ─── STAT COUNTER ─────────────────────────────────────────────────── */
+    .hero-stat-num { transition: color 0.3s; }
+    .hero-stat-num.counting { color: rgba(255,255,255,0.6); }
+
     /* ─── SUCCESS MESSAGE ──────────────────────────────────────────────── */
     .form-success {
       display: none;
@@ -1128,12 +1247,14 @@
       .footer-bottom { flex-direction: column; text-align: center; }
       .wsp-float { bottom: 1.5rem; right: 1.5rem; }
       .contact-form { padding: 1.8rem; }
+      [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; }
     }
 
     @media (max-width: 480px) {
       .hero-actions { flex-direction: column; }
       .hero-actions a { width: 100%; justify-content: center; }
       .services-header { flex-direction: column; align-items: flex-start; }
+      [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
     }
   </style>
 </head>
@@ -1202,15 +1323,15 @@
 
         <div class="hero-stats">
           <div>
-            <div class="hero-stat-num">500<span>+</span></div>
+            <div class="hero-stat-num" data-target="500" data-suffix="+">0<span>+</span></div>
             <div class="hero-stat-label">Mudanzas realizadas</div>
           </div>
           <div>
-            <div class="hero-stat-num">100<span>%</span></div>
+            <div class="hero-stat-num" data-target="100" data-suffix="%">0<span>%</span></div>
             <div class="hero-stat-label">Sin daños reportados</div>
           </div>
           <div>
-            <div class="hero-stat-num">4.9<span>★</span></div>
+            <div class="hero-stat-num" data-target="4.9" data-suffix="★" data-decimal="1">0.0<span>★</span></div>
             <div class="hero-stat-label">Calificación clientes</div>
           </div>
         </div>
@@ -1415,36 +1536,72 @@
   <!-- ═══ UBICACIÓN ═════════════════════════════════════════════════════ -->
   <section id="ubicacion">
     <div class="container">
-      <div class="ubicacion-inner">
-        <div class="ubicacion-info">
-          <div class="section-label">Dónde operamos</div>
-          <h2 class="section-title">Cobertura en<br />Santiago de Chile</h2>
-          <p class="section-sub">Operamos en toda la Región Metropolitana. Desde Maipú hasta La Florida, desde Pudahuel hasta La Reina.</p>
+      <div style="text-align:center; margin-bottom:3rem;">
+        <div class="section-label" style="justify-content:center;">Dónde operamos</div>
+        <h2 class="section-title" style="color:var(--navy);">Cobertura en<br />Santiago de Chile</h2>
+        <p class="section-sub" style="margin:0 auto; text-align:center;">Operamos en toda la Región Metropolitana. Desde Maipú hasta La Florida, desde Pudahuel hasta La Reina.</p>
+      </div>
 
-          <div class="ubicacion-details">
-            <div class="ubicacion-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>Santiago, Región Metropolitana, Chile</span>
-            </div>
-            <div class="ubicacion-item">
-              <i class="fas fa-clock"></i>
-              <span>Lunes a Sábado: 08:00 – 19:00 hrs</span>
-            </div>
-            <div class="ubicacion-item">
-              <i class="fas fa-mobile-alt"></i>
-              <span>+56 9 6182 2888</span>
-            </div>
-            <div class="ubicacion-item">
-              <i class="fas fa-truck-moving"></i>
-              <span>Servicio disponible en toda la RM</span>
-            </div>
+      <!-- Tarjetas de datos operacionales -->
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2.5rem;">
+        <div class="ubi-card">
+          <div class="ubi-card-icon" style="background:rgba(11,31,58,0.07);color:var(--navy);">
+            <i class="fas fa-map-marker-alt"></i>
           </div>
-
-          <a href="https://wa.me/56961822888?text=Hola%2C%20quiero%20saber%20si%20llegan%20a%20mi%20comuna." target="_blank" rel="noopener" class="btn-primary" style="margin-top:0.5rem; display:inline-flex;">
-            <i class="fab fa-whatsapp"></i> Consultar mi comuna
-          </a>
+          <div class="ubi-card-label">Base de operaciones</div>
+          <div class="ubi-card-value">Santiago, RM</div>
         </div>
+        <div class="ubi-card">
+          <div class="ubi-card-icon" style="background:rgba(176,48,48,0.08);color:var(--red);">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="ubi-card-label">Horario de atención</div>
+          <div class="ubi-card-value">Lun–Sáb · 08–19 hrs</div>
+        </div>
+        <div class="ubi-card">
+          <div class="ubi-card-icon" style="background:rgba(37,211,102,0.08);color:#18a350;">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="ubi-card-label">WhatsApp directo</div>
+          <div class="ubi-card-value">+56 9 6182 2888</div>
+        </div>
+        <div class="ubi-card">
+          <div class="ubi-card-icon" style="background:rgba(11,31,58,0.07);color:var(--navy);">
+            <i class="fas fa-truck-moving"></i>
+          </div>
+          <div class="ubi-card-label">Cobertura total</div>
+          <div class="ubi-card-value">Toda la RM</div>
+        </div>
+      </div>
 
+      <!-- Comunas que cubrimos -->
+      <div style="background:var(--ivory-dark); border-radius:20px; padding:2rem 2.2rem; margin-bottom:2.5rem; border:1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:1.4rem;">
+          <i class="fas fa-location-dot" style="color:var(--red); font-size:1rem;"></i>
+          <span style="font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy);">Comunas con cobertura activa</span>
+        </div>
+        <div class="comunas-grid">
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Providencia</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Las Condes</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Vitacura</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Santiago Centro</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Ñuñoa</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> La Reina</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Maipú</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Pudahuel</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> La Florida</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Peñalolén</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> San Miguel</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Macul</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Quinta Normal</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Estación Central</span>
+          <span class="comuna-chip"><i class="fas fa-circle"></i> Independencia</span>
+          <span class="comuna-chip active"><i class="fas fa-circle"></i> + toda la RM</span>
+        </div>
+      </div>
+
+      <!-- Mapa + CTA -->
+      <div class="ubicacion-inner">
         <div class="map-container" role="region" aria-label="Mapa de Santiago de Chile">
           <iframe
             src="https://www.openstreetmap.org/export/embed.html?bbox=-70.80%2C-33.62%2C-70.48%2C-33.33&layer=mapnik&marker=-33.4569%2C-70.6483"
@@ -1452,6 +1609,45 @@
             title="Mapa Santiago de Chile – Logística &amp; Mudanzas"
             allowfullscreen>
           </iframe>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:1.2rem;">
+          <div style="background:var(--navy); border-radius:16px; padding:1.8rem; color:white;">
+            <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:1rem;">¿Por qué elegir servicio local?</div>
+            <div style="display:flex; flex-direction:column; gap:0.9rem;">
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <div style="min-width:28px; height:28px; background:rgba(176,48,48,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <i class="fas fa-bolt" style="color:#e88; font-size:0.75rem;"></i>
+                </div>
+                <div>
+                  <div style="font-size:0.88rem; font-weight:600; color:white; margin-bottom:2px;">Respuesta rápida</div>
+                  <div style="font-size:0.8rem; color:rgba(255,255,255,0.45);">Llegamos el mismo día o al siguiente según disponibilidad</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <div style="min-width:28px; height:28px; background:rgba(176,48,48,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <i class="fas fa-map-pin" style="color:#e88; font-size:0.75rem;"></i>
+                </div>
+                <div>
+                  <div style="font-size:0.88rem; font-weight:600; color:white; margin-bottom:2px;">Conocemos la ciudad</div>
+                  <div style="font-size:0.8rem; color:rgba(255,255,255,0.45);">Rutas optimizadas, sin demoras por tráfico ni desorientación</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <div style="min-width:28px; height:28px; background:rgba(176,48,48,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <i class="fas fa-handshake" style="color:#e88; font-size:0.75rem;"></i>
+                </div>
+                <div>
+                  <div style="font-size:0.88rem; font-weight:600; color:white; margin-bottom:2px;">Empresa local confiable</div>
+                  <div style="font-size:0.8rem; color:rgba(255,255,255,0.45);">No somos intermediarios. Tú contratas directamente con nosotros</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://wa.me/56961822888?text=Hola%2C%20quiero%20saber%20si%20llegan%20a%20mi%20comuna." target="_blank" rel="noopener" class="btn-primary" style="justify-content:center; text-decoration:none;">
+            <i class="fab fa-whatsapp"></i> Consultar cobertura en mi comuna
+          </a>
         </div>
       </div>
     </div>
@@ -1565,7 +1761,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Logística &amp; Mudanzas · Santiago de Chile · Todos los derechos reservados</p>
+        <p>&copy; 2025 Logística &amp; Mudanzas · Santiago de Chile · Todos los derechos reservados<br><span style="font-size:0.72rem; color:rgba(255,255,255,0.18);">Created by <a href="https://instagram.com/TwiiNz_X" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.3); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">@TwiiNz_X</a></span></p>
         <div class="footer-social">
           <a href="https://wa.me/56961822888" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
@@ -1643,6 +1839,43 @@
         window.open(`https://wa.me/56961822888?text=${encodeURIComponent(text)}`, '_blank');
       }, 800);
     });
+
+    // ── Counter animation ──
+    function animateCounter(el) {
+      const target  = parseFloat(el.dataset.target);
+      const suffix  = el.dataset.suffix || '';
+      const decimal = parseInt(el.dataset.decimal) || 0;
+      const duration = 1800;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
+        const display = decimal ? current.toFixed(decimal) : Math.floor(current);
+        el.innerHTML = `${display}<span>${suffix}</span>`;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    // Trigger counters when hero comes into view
+    const statNums = document.querySelectorAll('.hero-stat-num[data-target]');
+    let countersRan = false;
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersRan) {
+          countersRan = true;
+          statNums.forEach(el => animateCounter(el));
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) statsObserver.observe(heroStats);
 
     // ── Navbar background on scroll ──
     window.addEventListener('scroll', () => {
