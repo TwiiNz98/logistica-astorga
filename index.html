@@ -1,778 +1,800 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Logística Astorga | Mudanzas y Fletes en Santiago</title>
-  <meta name="description" content="Mudanzas residenciales, corporativas y fletes express en Santiago de Chile. Desde $45.000. Más de 4 años de experiencia. Confiable, puntual y seguro." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    /* ─── RESET & VARIABLES ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      /* Azul más luminoso */
-      --navy:        #1B3E6F;
-      --navy-deep:   #14305A;
-      --navy-mid:    #244D87;
-      --navy-light:  #2C5FA0;
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Logística Astorga · Cotiza tu Mudanza</title>
+<meta name="description" content="Cotiza tu mudanza o flete en Santiago en minutos. Logística Astorga — más de 4 años de experiencia."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3E6F;--deep:#0D1F42;--mid:#244D87;
+  --red:#C0392B;--red2:#E04435;
+  --wa:#25D366;--wa2:#1ebe5d;
+  --muted:rgba(255,255,255,.48);
+  --glass:rgba(255,255,255,.055);--gbrd:rgba(255,255,255,.10);
+  --fh:'Syne',sans-serif;--fb:'Outfit',sans-serif;
+}
+html,body{height:100%;overflow:hidden;font-family:var(--fb);background:var(--deep);color:#fff;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;user-select:none}
 
-      /* Secciones alternas claras */
-      --section-light:  #F2F6FB;
-      --section-white:  #FFFFFF;
+/* ─── INTRO ─── */
+#intro{position:fixed;inset:0;z-index:9000;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#ipl,#ipr{position:absolute;top:0;width:50%;height:100%;background:#fff;z-index:2;transition:transform .65s cubic-bezier(.76,0,.24,1)}
+#ipl{left:0}#ipr{right:0}
+#intro.open #ipl{transform:translateX(-100%)}
+#intro.open #ipr{transform:translateX(100%)}
+.i-wrap{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:18px}
+.i-ring{width:76px;height:76px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;animation:iRing .5s cubic-bezier(.34,1.56,.64,1) .1s both}
+@keyframes iRing{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.i-truck{animation:iTruck .7s ease .55s both}
+@keyframes iTruck{from{opacity:0;filter:blur(16px);transform:translateX(-18px)}to{opacity:1;filter:blur(0);transform:none}}
+.i-brand{font-family:var(--fh);font-size:16px;font-weight:800;color:var(--deep);letter-spacing:-.01em;animation:iBrand .4s ease 1.05s both}
+@keyframes iBrand{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* vibrate the truck after it appears */
+.i-truck.vibe{animation:iTruck .7s ease .55s both,iVibe .09s linear 1.45s 7 alternate}
+@keyframes iVibe{to{transform:translateX(5px) rotate(1.2deg)}}
 
-      --ivory:       #F5F1EB;
-      --red:         #C0392B;
-      --red-soft:    #E04435;
-      --white:       #FFFFFF;
+/* ─── APP ─── */
+#app{position:fixed;inset:0;max-width:520px;left:50%;transform:translateX(-50%);right:auto;width:100%}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.scr.on{opacity:1;pointer-events:all}
 
-      /* Glassmorphism sobre azul */
-      --glass-nav:   rgba(20,48,90,0.82);
-      --glass-line:  rgba(255,255,255,0.12);
-      --card-dark:   rgba(255,255,255,0.06);
-      --card-border: rgba(255,255,255,0.11);
+/* ─── HEADER ─── */
+.hdr{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:rgba(13,31,66,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--gbrd);z-index:10}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hico{width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hname{font-family:var(--fh);font-size:13px;font-weight:700;line-height:1.2}
+.hsub{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em}
+.hbadge{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--wa);font-weight:500}
+.hdot{width:6px;height:6px;border-radius:50%;background:var(--wa);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-      /* Para secciones claras */
-      --card-light:  rgba(27,62,111,0.06);
-      --card-light-border: rgba(27,62,111,0.12);
+/* ─── BUTTONS ─── */
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;font-family:var(--fb);font-weight:600;font-size:15px;padding:15px 22px;border-radius:100px;border:none;cursor:pointer;text-decoration:none;width:100%;transition:transform .14s,box-shadow .14s}
+.btn:active{transform:scale(.96)}
+.btn:disabled{opacity:.35;pointer-events:none}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 5px 20px rgba(192,57,43,.38)}
+.btn-red:hover{background:var(--red2)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 5px 20px rgba(37,211,102,.34)}
+.btn-wa:hover{background:var(--wa2)}
+.btn-ghost{background:var(--glass);color:rgba(255,255,255,.6);border:1px solid var(--gbrd)}
+.btn-ghost:hover{background:rgba(255,255,255,.09)}
 
-      --text-on-dark:   rgba(255,255,255,0.75);
-      --text-muted-dark:rgba(255,255,255,0.45);
-      --text-on-light:  #1B3E6F;
-      --text-light-sub: #4A6FA5;
-      --text-muted-lt:  #7A96BB;
+/* ─── CAROUSEL ─── */
+#sExp{background:linear-gradient(150deg,var(--deep) 0%,var(--navy) 58%,var(--mid) 100%)}
+#sExp::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px}
+.crsl-wrap{flex:1;overflow:hidden;position:relative;touch-action:pan-y}
+.crsl-track{display:flex;height:100%;transition:transform .46s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+.slide{min-width:100%;height:100%;padding:30px 24px 16px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.sl-icon{font-size:48px;margin-bottom:14px;display:block;line-height:1}
+.sl-tag{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red2);margin-bottom:9px}
+.sl-h{font-family:var(--fh);font-size:clamp(1.9rem,9vw,2.7rem);font-weight:800;line-height:1.07;letter-spacing:-.03em;margin-bottom:13px}
+.sl-p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.68);margin-bottom:20px;max-width:340px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:11.5px;font-weight:500;padding:5px 12px;border-radius:100px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.74)}
+.crsl-foot{flex-shrink:0;padding:15px 20px 12px}
+.dots{display:flex;gap:5px;justify-content:center;margin-bottom:13px}
+.dot{width:6px;height:6px;border-radius:3px;cursor:pointer;background:rgba(255,255,255,.2);transition:all .28s}
+.dot.on{width:20px;background:#fff}
+.trust{flex-shrink:0;display:flex;overflow-x:auto;background:rgba(0,0,0,.22);border-top:1px solid rgba(255,255,255,.05);padding:9px 12px;scrollbar-width:none;gap:0}
+.trust::-webkit-scrollbar{display:none}
+.ti{display:flex;align-items:center;gap:5px;flex-shrink:0;font-size:10.5px;color:rgba(255,255,255,.4);padding:0 13px;border-right:1px solid rgba(255,255,255,.07)}
+.ti:first-child{padding-left:0}.ti:last-child{border-right:none}
+.ti strong{color:rgba(255,255,255,.76)}
 
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'Outfit', sans-serif;
+/* ─── PERFILAMIENTO ─── */
+#sPrf{background:linear-gradient(160deg,var(--deep) 0%,#183260 100%)}
+.prf-body{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:18px 18px}
+.pbar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-bottom:22px}
+.pfill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--red),var(--red2));transition:width .48s cubic-bezier(.34,1.56,.64,1)}
+.slbl{font-size:10.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.sq{font-family:var(--fh);font-size:clamp(1.25rem,7vw,1.85rem);font-weight:700;line-height:1.18;margin-bottom:18px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{padding:13px 14px;border-radius:14px;border:1.5px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);color:#fff;font-family:var(--fb);cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:all .18s ease;-webkit-tap-highlight-color:transparent;appearance:none}
+.opt:active{transform:scale(.98)}
+.opt.sel{background:rgba(192,57,43,.17);border-color:var(--red);transform:translateX(2px)}
+.oico{font-size:21px;flex-shrink:0;width:28px;text-align:center}
+.otxt{flex:1}
+.otit{display:block;font-weight:600;font-size:13.5px}
+.osub{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+.ochk{width:20px;height:20px;border-radius:50%;flex-shrink:0;border:1.5px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .16s}
+.opt.sel .ochk{background:var(--red);border-color:var(--red);color:#fff}
+.pnav{flex-shrink:0;padding:10px 18px 14px;display:flex;gap:10px;align-items:center}
+.btnback{width:46px;height:46px;flex-shrink:0;border-radius:100px;border:1.5px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.6);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .16s}
+.btnback:hover{background:rgba(255,255,255,.08)}
+.btnback:active{transform:scale(.93)}
+.spnl{display:none}
+.spnl.on{display:block;animation:sfade .32s ease both}
+@keyframes sfade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-      --r-sm: 12px; --r-md: 18px; --r-lg: 28px; --r-xl: 40px;
-    }
+/* ─── COTIZACIÓN ─── */
+#sCot{background:linear-gradient(160deg,var(--deep) 0%,#183260 100%)}
+.cot-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:22px 18px}
+#loader{display:flex;flex-direction:column;align-items:center;padding:44px 20px;gap:18px;text-align:center}
+.spin{width:52px;height:52px;border-radius:50%;border:3px solid rgba(255,255,255,.07);border-top-color:var(--red);animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lmsg{font-size:14.5px;color:rgba(255,255,255,.55)}
+#quote{display:none;animation:sfade .4s ease both}
+.qhead{text-align:center;margin-bottom:18px}
+.pbadge{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.p-std{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#4ade80}
+.p-plus{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);color:#f5a623}
+.p-prem{background:rgba(192,57,43,.14);border:1px solid rgba(192,57,43,.35);color:#ff8c7d}
+.qtit{font-family:var(--fh);font-size:1.15rem;font-weight:700;margin-bottom:2px}
+.qsub{font-size:12px;color:var(--muted)}
+.card{background:var(--glass);border:1px solid var(--gbrd);border-radius:15px;padding:15px;margin-bottom:10px}
+.pr{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.pr:last-child{border-bottom:none}
+.pk{color:var(--muted)}
+.pv{font-family:var(--fh);font-weight:600;font-size:14px}
+.pv.dim{color:rgba(255,255,255,.45);font-size:13px}
+.ptotal{background:linear-gradient(135deg,rgba(192,57,43,.19),rgba(192,57,43,.06));border:1px solid rgba(192,57,43,.28);border-radius:14px;padding:15px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ptlbl{font-size:13px;color:rgba(255,255,255,.58)}
+.ptnote{font-size:10px;color:rgba(255,255,255,.26);margin-top:2px}
+.ptval{font-family:var(--fh);font-size:1.7rem;font-weight:800;color:#ff8c7d;letter-spacing:-.03em}
+.trow{display:flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--gbrd);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:10px}
+.trow strong{color:#fff}
+.tklbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:8px}
+.tkbar{display:flex;gap:5px}
+.tkbl{flex:1;height:17px;border-radius:4px;background:rgba(255,255,255,.07);transition:background .2s}
+.tkbl.on{background:var(--red)}
+.gap8{margin-top:8px}
+.gap18{height:18px;display:block}
 
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--navy-deep);
-      color: var(--white);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+/* ─── FORMULARIO ─── */
+#sFrm{background:linear-gradient(160deg,var(--deep) 0%,#183260 100%)}
+.frm-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 18px}
+.ftop{font-size:10.5px;color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.fh{font-family:var(--fh);font-size:1.3rem;font-weight:700;line-height:1.2;margin-bottom:17px}
+.smini{background:var(--glass);border:1px solid var(--gbrd);border-radius:14px;padding:13px 14px;margin-bottom:18px}
+.smtit{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.smrow{display:flex;justify-content:space-between;font-size:12.5px;padding:2.5px 0}
+.smk{color:var(--muted)}
+.smv{font-weight:500;text-align:right;max-width:55%;font-size:12px}
+.smtotal{display:flex;justify-content:space-between;font-size:13px;padding-top:9px;margin-top:6px;border-top:1px solid rgba(255,255,255,.05)}
+.smtv{color:#ff8c7d;font-weight:700;font-family:var(--fh)}
+.fg{margin-bottom:14px}
+.flbl{display:block;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.opt-lbl{font-size:11.5px;color:rgba(255,255,255,.28);font-weight:400}
+.finp{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);color:#fff;font-family:var(--fb);font-size:16px;outline:none;transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;appearance:none}
+.finp::placeholder{color:rgba(255,255,255,.2)}
+.finp:focus{border-color:rgba(192,57,43,.48);box-shadow:0 0 0 3px rgba(192,57,43,.09)}
+.finp.ok{border-color:rgba(37,211,102,.36)}
+.finp.err{border-color:rgba(220,38,38,.52);animation:shake .32s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(6px)}}
+.fhint{font-size:11px;margin-top:4px;min-height:16px}
+.fhint.ok{color:#4ade80}
+.fhint.err{color:#f87171}
 
-    /* ─── WHATSAPP FLOAT ─────────────────────────────────────────── */
-    .wa-float {
-      position: fixed; bottom: 28px; right: 28px; z-index: 1000;
-      background: #25D366; color: #fff; border-radius: 50px;
-      padding: 14px 24px 14px 18px;
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.45);
-      transition: transform .25s, box-shadow .25s;
-      animation: pulse-wa 3s infinite;
-    }
-    .wa-float:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px rgba(37,211,102,0.55); }
-    .wa-float svg { width: 22px; height: 22px; flex-shrink: 0; }
-    @keyframes pulse-wa { 0%,100%{box-shadow:0 8px 32px rgba(37,211,102,0.45)} 50%{box-shadow:0 8px 48px rgba(37,211,102,0.70)} }
-    @media(max-width:480px){ .wa-float span{display:none} .wa-float{padding:16px;border-radius:50%} }
+/* ─── POPUP ─── */
+#popup{position:fixed;inset:0;z-index:8000;display:none;align-items:flex-end;justify-content:center}
+#popup.on{display:flex}
+.pov{position:absolute;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+.psheet{position:relative;z-index:1;width:100%;max-width:520px;background:linear-gradient(180deg,#1c3b6a 0%,var(--deep) 100%);border:1px solid var(--gbrd);border-radius:22px 22px 0 0;padding:15px 18px 28px;max-height:90vh;overflow-y:auto;animation:shUp .38s cubic-bezier(.34,1.56,.64,1)}
+@keyframes shUp{from{transform:translateY(100%)}to{transform:none}}
+.phandle{width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,.16);margin:0 auto 16px}
+.ptit2{font-family:var(--fh);font-size:1.05rem;font-weight:700;text-align:center;margin-bottom:14px}
+.crow{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.crow:last-child{border-bottom:none}
+.ck{color:var(--muted);flex-shrink:0}
+.cv{font-weight:600;text-align:right;max-width:58%;font-size:12.5px}
+.ctotal{background:var(--glass);border-radius:12px;padding:14px;text-align:center;margin:13px 0}
+.ctlbl{font-size:12px;color:var(--muted);margin-bottom:3px}
+.ctval{font-family:var(--fh);font-size:1.9rem;font-weight:800;color:#ff8c7d;letter-spacing:-.03em}
+.btnedit{background:none;border:none;font-family:var(--fb);font-size:13px;color:rgba(255,255,255,.36);cursor:pointer;padding:9px;width:100%;text-align:center;transition:color .16s}
+.btnedit:hover{color:rgba(255,255,255,.62)}
 
-    /* ─── NAVBAR ────────────────────────────────────────────────── */
-    nav {
-      position: fixed; top:0; left:0; right:0; z-index: 900;
-      padding: 0 5%; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--glass-nav);
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
-      border-bottom: 1px solid var(--glass-line);
-      transition: background .3s;
-    }
-    .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--white); }
-    .logo-icon { width:42px; height:42px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .logo-icon svg { width:24px; height:24px; }
-    .logo-text { font-family:var(--font-display); font-size:17px; font-weight:700; letter-spacing:.02em; line-height:1.15; }
-    .logo-sub  { font-size:11px; font-weight:400; color:rgba(255,255,255,0.5); letter-spacing:.08em; text-transform:uppercase; }
-    .nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
-    .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:14px; font-weight:500; letter-spacing:.03em; transition:color .2s; }
-    .nav-links a:hover { color:var(--white); }
-    .nav-cta { background:#25D366 !important; color:#fff !important; padding:9px 20px; border-radius:50px; font-weight:600 !important; transition:background .2s, transform .2s !important; }
-    .nav-cta:hover { background:#1ebe5d !important; transform:translateY(-1px); }
-    @media(max-width:760px){ .nav-links { display:none; } }
+/* ─── WA FLOAT ─── */
+#waFloat{position:fixed;bottom:20px;right:18px;z-index:7000;background:var(--wa);color:#fff;border-radius:100px;padding:12px 17px 12px 13px;display:none;align-items:center;gap:7px;font-family:var(--fb);font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 7px 24px rgba(37,211,102,.4);animation:wap 3s ease infinite}
+@keyframes wap{0%,100%{box-shadow:0 7px 24px rgba(37,211,102,.4)}50%{box-shadow:0 7px 38px rgba(37,211,102,.62)}}
+#waFloat:active{transform:scale(.95)}
+@media(max-width:380px){#waFloat span{display:none}#waFloat{padding:14px;border-radius:50%}}
+@media(min-width:520px){#waFloat{right:calc(50% - 240px)}}
 
-    /* ─── HELPERS ────────────────────────────────────────────────── */
-    .container { max-width:1180px; margin:0 auto; padding:0 5%; }
-    .section-tag {
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; margin-bottom:16px;
-    }
-    .section-tag.on-dark  { color:#ff8c7d; }
-    .section-tag.on-dark::before  { content:''; width:24px; height:2px; background:var(--red); display:block; }
-    .section-tag.on-light { color:var(--red); }
-    .section-tag.on-light::before { content:''; width:24px; height:2px; background:var(--red); display:block; }
-
-    h2.title-dark  { font-family:var(--font-display); font-size:clamp(1.9rem,4vw,3rem); font-weight:700; line-height:1.15; color:var(--white); }
-    h2.title-light { font-family:var(--font-display); font-size:clamp(1.9rem,4vw,3rem); font-weight:700; line-height:1.15; color:var(--navy-deep); }
-    .sub-dark  { color:var(--text-on-dark);  font-size:17px; line-height:1.7; max-width:560px; }
-    .sub-light { color:var(--text-light-sub); font-size:17px; line-height:1.7; max-width:560px; }
-
-    /* ─── BUTTONS ────────────────────────────────────────────────── */
-    .btn { display:inline-flex; align-items:center; gap:10px; font-family:var(--font-body); font-weight:600; font-size:15px; padding:14px 28px; border-radius:50px; text-decoration:none; border:none; cursor:pointer; transition:transform .22s, box-shadow .22s, background .22s; }
-    .btn:hover { transform:translateY(-2px); }
-    .btn-wa    { background:#25D366; color:#fff; box-shadow:0 6px 28px rgba(37,211,102,0.38); }
-    .btn-wa:hover { background:#1ebe5d; box-shadow:0 10px 36px rgba(37,211,102,0.52); }
-    .btn-outline-light { background:transparent; color:var(--navy-deep); border:1.5px solid rgba(27,62,111,0.25); }
-    .btn-outline-light:hover { background:rgba(27,62,111,0.06); border-color:var(--navy); }
-    .btn-outline-dark  { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.25); }
-    .btn-outline-dark:hover { background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.45); }
-    .btn-red   { background:var(--red); color:#fff; box-shadow:0 6px 28px rgba(192,57,43,0.38); }
-    .btn-red:hover { background:var(--red-soft); box-shadow:0 10px 36px rgba(192,57,43,0.52); }
-
-    /* ══════════════ HERO ═══════════════ */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 120px 0 80px;
-      overflow: hidden; position: relative;
-    }
-    .hero-bg {
-      position: absolute; inset:0;
-      background: linear-gradient(140deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-mid) 100%);
-    }
-    /* subtle grid */
-    .hero-bg::before {
-      content:'';
-      position:absolute; inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size:80px 80px;
-    }
-    /* red glow right side */
-    .hero-bg::after {
-      content:'';
-      position:absolute; inset:0;
-      background: radial-gradient(ellipse 50% 80% at 95% 50%, rgba(192,57,43,0.13) 0%, transparent 65%);
-    }
-    .hero-inner {
-      position:relative; z-index:1;
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:60px; align-items:center;
-    }
-    .hero-badge {
-      display:inline-flex; align-items:center; gap:8px;
-      background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3);
-      color:#ff8c7d; font-size:13px; font-weight:500;
-      padding:7px 14px; border-radius:50px; margin-bottom:28px;
-    }
-    .hero-badge-dot { width:7px; height:7px; border-radius:50%; background:var(--red-soft); animation:blink 2s infinite; }
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-    .hero-title { font-family:var(--font-display); font-size:clamp(2.6rem,5.5vw,4rem); font-weight:800; line-height:1.1; margin-bottom:24px; letter-spacing:-.02em; }
-    .hero-title em { font-style:normal; color:#ff8c7d; }
-    .hero-sub { font-size:18px; color:var(--text-on-dark); line-height:1.7; margin-bottom:40px; max-width:480px; }
-    .hero-actions { display:flex; gap:16px; flex-wrap:wrap; }
-    .hero-stats {
-      display:flex; gap:28px; margin-top:48px;
-      padding-top:32px; border-top:1px solid var(--glass-line);
-    }
-    .stat-num  { font-family:var(--font-display); font-size:26px; font-weight:800; }
-    .stat-label{ font-size:12px; color:var(--text-muted-dark); margin-top:2px; letter-spacing:.04em; }
-
-    /* Hero photo card */
-    .hero-photo-wrap {
-      position:relative; border-radius:var(--r-lg); overflow:hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.45);
-    }
-    .hero-photo-wrap img { width:100%; height:440px; object-fit:cover; object-position:center; display:block; }
-    .hero-photo-overlay {
-      position:absolute; inset:0;
-      background:linear-gradient(to top, rgba(14,30,60,0.7) 0%, transparent 60%);
-    }
-    .hero-photo-badge {
-      position:absolute; bottom:20px; left:20px; right:20px;
-      background:rgba(14,30,60,0.8);
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(255,255,255,0.12);
-      border-radius:var(--r-md);
-      padding:16px 20px;
-      display:flex; align-items:center; gap:14px;
-    }
-    .photo-badge-icon { width:44px; height:44px; background:var(--red); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:22px; }
-    .photo-badge-text { font-size:14px; font-weight:600; line-height:1.4; }
-    .photo-badge-sub  { font-size:12px; color:rgba(255,255,255,0.6); margin-top:2px; }
-    .hero-pill-top {
-      position:absolute; top:-16px; right:24px;
-      background:var(--red); color:#fff; border-radius:50px;
-      padding:8px 18px; font-size:13px; font-weight:700;
-      box-shadow:0 8px 24px rgba(192,57,43,0.4);
-    }
-
-    @media(max-width:900px){ .hero-inner{grid-template-columns:1fr} .hero-photo-wrap{display:none} }
-
-    /* ══════════════ SERVICIOS (LIGHT) ═══════════════ */
-    #servicios { padding:100px 0; background:var(--section-light); }
-    .services-hdr { margin-bottom:52px; }
-    .bento-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-    .service-card {
-      background:var(--white);
-      border:1px solid var(--card-light-border);
-      border-radius:var(--r-lg);
-      padding:36px 32px;
-      cursor:pointer;
-      transition:transform .3s, box-shadow .3s, border-color .3s;
-      position:relative; overflow:hidden;
-    }
-    .service-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(192,57,43,0.04) 0%,transparent 60%); opacity:0; transition:opacity .3s; }
-    .service-card:hover { transform:translateY(-6px); border-color:rgba(192,57,43,0.25); box-shadow:0 20px 60px rgba(27,62,111,0.12); }
-    .service-card:hover::before { opacity:1; }
-    .service-icon { width:56px; height:56px; background:rgba(192,57,43,0.09); border:1px solid rgba(192,57,43,0.2); border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:24px; font-size:26px; transition:background .3s; }
-    .service-card:hover .service-icon { background:rgba(192,57,43,0.16); }
-    .service-name { font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--navy-deep); margin-bottom:10px; }
-    .service-desc { font-size:14px; color:var(--text-light-sub); line-height:1.7; margin-bottom:20px; }
-    .service-features { list-style:none; }
-    .service-features li { font-size:13px; color:var(--text-light-sub); padding:5px 0; display:flex; align-items:center; gap:8px; }
-    .service-features li::before { content:'→'; color:var(--red); font-weight:700; }
-    .service-cta { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:var(--red); margin-top:20px; border-top:1px solid rgba(27,62,111,0.08); padding-top:20px; width:100%; text-decoration:none; transition:gap .2s; }
-    .service-card:hover .service-cta { gap:10px; }
-    @media(max-width:760px){ .bento-grid{grid-template-columns:1fr} }
-
-    /* ══════════════ PRECIOS (DARK) ═══════════════ */
-    #precios { padding:100px 0; background:linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%); }
-    .pricing-inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
-    .pricing-highlight {
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:var(--r-lg); padding:44px;
-      position:relative; overflow:hidden;
-    }
-    .pricing-highlight::after { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:radial-gradient(circle,rgba(192,57,43,0.18) 0%,transparent 70%); pointer-events:none; }
-    .price-from { font-size:13px; color:var(--text-muted-dark); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; }
-    .price-big  { font-family:var(--font-display); font-size:clamp(3rem,7vw,4.5rem); font-weight:800; line-height:1; }
-    .price-currency { font-size:.45em; vertical-align:super; color:var(--text-on-dark); }
-    .price-note { font-size:14px; color:var(--text-on-dark); margin-top:14px; line-height:1.6; }
-    .info-box {
-      margin-top:24px;
-      background:rgba(44,95,160,0.2); border:1px solid rgba(44,95,160,0.35);
-      border-radius:var(--r-sm); padding:16px 20px;
-      display:flex; gap:12px; align-items:flex-start;
-    }
-    .info-box-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
-    .info-box-text { font-size:14px; color:#a8c4e8; line-height:1.6; font-weight:500; }
-    .pay-methods { margin-top:18px; font-size:13px; color:var(--text-muted-dark); display:flex; align-items:center; gap:8px; }
-    .var-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:var(--r-md); padding:22px 24px; display:flex; align-items:center; gap:18px; margin-bottom:16px; transition:transform .25s, border-color .25s; }
-    .var-card:hover { transform:translateX(6px); border-color:rgba(192,57,43,0.3); }
-    .var-icon { font-size:28px; width:52px; height:52px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .var-name { font-family:var(--font-display); font-size:16px; font-weight:700; margin-bottom:4px; }
-    .var-desc { font-size:13px; color:var(--text-on-dark); line-height:1.5; }
-    .var-extra { font-size:12px; color:var(--text-muted-dark); margin-top:4px; }
-    @media(max-width:760px){ .pricing-inner{grid-template-columns:1fr} }
-
-    /* ══════════════ DIFERENCIAL (LIGHT) ═══════════════ */
-    #diferencial { padding:100px 0; background:var(--section-white); }
-    .features-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:52px; }
-    .feat-card { background:var(--section-light); border:1px solid var(--card-light-border); border-radius:var(--r-md); padding:30px 24px; transition:transform .3s, box-shadow .3s, border-color .3s; }
-    .feat-card:hover { transform:translateY(-5px); border-color:rgba(192,57,43,0.2); box-shadow:0 16px 48px rgba(27,62,111,0.1); }
-    .feat-icon-wrap { width:52px; height:52px; background:linear-gradient(135deg,var(--red) 0%,var(--red-soft) 100%); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:20px; }
-    .feat-title { font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--navy-deep); margin-bottom:8px; }
-    .feat-text  { font-size:14px; color:var(--text-light-sub); line-height:1.65; }
-    @media(max-width:900px){ .features-grid{grid-template-columns:repeat(2,1fr)} }
-    @media(max-width:480px){ .features-grid{grid-template-columns:1fr} }
-
-    /* ══════════════ COBERTURA (DARK) ═══════════════ */
-    #cobertura { padding:100px 0; background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 100%); }
-    .coverage-inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
-    .coverage-map { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:var(--r-lg); height:340px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; position:relative; overflow:hidden; }
-    .coverage-map::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(192,57,43,0.12) 0%,transparent 70%); }
-    .map-icon { font-size:64px; position:relative; z-index:1; }
-    .map-label { font-family:var(--font-display); font-size:22px; font-weight:700; position:relative; z-index:1; }
-    .map-sublabel { font-size:14px; color:var(--text-on-dark); position:relative; z-index:1; }
-    .map-ring { position:absolute; border:1px solid rgba(192,57,43,0.2); border-radius:50%; animation:ring-expand 3s ease-out infinite; }
-    .map-ring:nth-child(1){width:120px;height:120px;animation-delay:0s}
-    .map-ring:nth-child(2){width:200px;height:200px;animation-delay:1s}
-    .map-ring:nth-child(3){width:280px;height:280px;animation-delay:2s}
-    @keyframes ring-expand{0%{opacity:.5;transform:scale(.7)}100%{opacity:0;transform:scale(1.3)}}
-    .coverage-item { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:var(--r-sm); padding:18px 22px; display:flex; align-items:center; gap:14px; font-size:15px; font-weight:500; margin-bottom:14px; }
-    .cov-dot { width:10px; height:10px; border-radius:50%; background:var(--red); flex-shrink:0; }
-    .cov-sub { font-size:13px; color:var(--text-muted-dark); margin-top:2px; }
-    @media(max-width:760px){ .coverage-inner{grid-template-columns:1fr} .coverage-map{height:220px} }
-
-    /* ══════════════ PROCESO (LIGHT) ═══════════════ */
-    #proceso { padding:100px 0; background:var(--section-light); }
-    .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:60px; position:relative; }
-    .process-steps::before { content:''; position:absolute; top:38px; left:10%; right:10%; height:2px; background:linear-gradient(90deg,var(--red) 0%,rgba(192,57,43,0.15) 100%); z-index:0; }
-    .step { text-align:center; padding:0 16px; position:relative; z-index:1; }
-    .step-num { width:76px; height:76px; background:var(--section-white); border:2px solid var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-family:var(--font-display); font-size:26px; font-weight:800; color:var(--red); transition:background .3s,transform .3s; }
-    .step:hover .step-num { background:var(--red); color:#fff; transform:scale(1.08); }
-    .step-title { font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--navy-deep); margin-bottom:8px; }
-    .step-desc  { font-size:13px; color:var(--text-light-sub); line-height:1.65; }
-    .step-hl { margin-top:10px; font-size:12px; color:var(--red); font-weight:600; background:rgba(192,57,43,0.08); border:1px solid rgba(192,57,43,0.2); border-radius:50px; padding:4px 12px; display:inline-block; }
-    @media(max-width:700px){ .process-steps{grid-template-columns:repeat(2,1fr);gap:32px} .process-steps::before{display:none} }
-    @media(max-width:400px){ .process-steps{grid-template-columns:1fr} }
-
-    /* ══════════════ GALERÍA (DARK) ═══════════════ */
-    #galeria { padding:100px 0; background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%); }
-    .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:auto auto; gap:14px; margin-top:48px; }
-    .gallery-item { border-radius:var(--r-md); overflow:hidden; cursor:pointer; transition:transform .3s,box-shadow .3s; position:relative; }
-    .gallery-item:hover { transform:scale(1.025); box-shadow:0 20px 56px rgba(0,0,0,0.45); }
-    .gallery-item.tall { grid-row:span 2; }
-    .gallery-item img { width:100%; height:100%; object-fit:cover; display:block; }
-    .gallery-item.tall img { height:100%; min-height:440px; }
-    .gallery-item:not(.tall) img { height:220px; }
-    .gallery-overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(14,30,60,0.88) 100%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:18px; }
-    .gallery-item:hover .gallery-overlay { opacity:1; }
-    .gallery-ol-text { font-size:13px; font-weight:600; color:#fff; }
-    @media(max-width:700px){ .gallery-grid{grid-template-columns:1fr 1fr} .gallery-item.tall{grid-row:span 1} .gallery-item.tall img{min-height:200px} }
-    @media(max-width:480px){ .gallery-grid{grid-template-columns:1fr} }
-
-    /* ══════════════ CTA FINAL (LIGHT) ═══════════════ */
-    #contacto { padding:100px 0; background:var(--section-white); position:relative; overflow:hidden; }
-    #contacto::before { content:''; position:absolute; top:-80px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(192,57,43,0.06) 0%,transparent 65%); pointer-events:none; }
-    #contacto::after  { content:''; position:absolute; bottom:-80px; left:-80px; width:400px; height:400px; background:radial-gradient(circle,rgba(27,62,111,0.07) 0%,transparent 65%); pointer-events:none; }
-    .cta-inner { text-align:center; position:relative; z-index:1; max-width:700px; margin:0 auto; }
-    .cta-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--red); font-weight:600; margin-bottom:24px; }
-    .cta-title { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; line-height:1.1; color:var(--navy-deep); margin-bottom:20px; }
-    .cta-sub   { font-size:17px; color:var(--text-light-sub); line-height:1.7; margin-bottom:40px; }
-    .cta-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-    .cta-trust { margin-top:36px; display:flex; gap:24px; justify-content:center; flex-wrap:wrap; }
-    .cta-trust-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-light-sub); }
-    .cta-trust-item span { color:var(--red); font-weight:700; }
-
-    /* ══════════════ FOOTER ═══════════════ */
-    footer { background:var(--navy-deep); border-top:1px solid rgba(255,255,255,0.08); padding:48px 0 32px; }
-    .footer-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
-    .footer-brand { font-family:var(--font-display); font-size:18px; font-weight:700; }
-    .footer-loc   { font-size:13px; color:var(--text-muted-dark); margin-top:6px; }
-    .footer-right { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
-    .footer-wa    { display:flex; align-items:center; gap:10px; color:#25D366; text-decoration:none; font-size:15px; font-weight:600; transition:opacity .2s; }
-    .footer-wa:hover { opacity:.75; }
-    .footer-copy  { font-size:12px; color:var(--text-muted-dark); }
-    .footer-line  { width:100%; height:1px; background:rgba(255,255,255,0.07); margin:24px 0; }
-    .footer-bottom{ text-align:center; font-size:12px; color:var(--text-muted-dark); }
-    @media(max-width:600px){ .footer-right{align-items:flex-start} }
-
-    /* ─── SCROLL REVEAL ─────────────────────────────────────────── */
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-    .reveal-d1{transition-delay:.1s} .reveal-d2{transition-delay:.2s}
-    .reveal-d3{transition-delay:.3s} .reveal-d4{transition-delay:.4s}
-
-    /* ─── SCHEDULE BADGE ─────────────────────────────────────────── */
-    .schedule-badge-dark {
-      display:inline-flex; align-items:center; gap:10px;
-      background:rgba(255,185,60,0.1); border:1px solid rgba(255,185,60,0.25);
-      border-radius:50px; padding:8px 16px; margin-top:18px;
-      font-size:13px; color:#FFD580; font-weight:500;
-    }
-  </style>
+/* ─── TOAST ─── */
+#toast{position:fixed;z-index:6000;bottom:84px;left:50%;transform:translateX(-50%) translateY(28px);opacity:0;background:rgba(13,31,66,.97);border:1px solid var(--gbrd);backdrop-filter:blur(16px);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:500;white-space:nowrap;transition:transform .38s cubic-bezier(.34,1.56,.64,1),opacity .32s ease;pointer-events:none;max-width:calc(100vw - 36px);overflow:hidden;text-overflow:ellipsis}
+#toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+</style>
 </head>
 <body>
 
-  <!-- WhatsApp Float -->
-  <a class="wa-float" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20un%20traslado%20en%20Santiago" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.87 0-3.62-.5-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-    <span>Cotizar ahora</span>
-  </a>
-
-  <!-- NAVBAR -->
-  <nav id="navbar">
-    <a class="nav-logo" href="#hero">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24" fill="white"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5 1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm13.5-1c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1z"/></svg>
-      </div>
-      <div>
-        <div class="logo-text">Logística Astorga</div>
-        <div class="logo-sub">Santiago de Chile</div>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#precios">Precios</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#contacto" class="nav-cta">Cotizar ✓</a></li>
-    </ul>
-  </nav>
-
-  <!-- ═══ HERO ═══ -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="container">
-      <div class="hero-inner">
-
-        <!-- texto -->
-        <div class="hero-content">
-          <div class="hero-badge">
-            <div class="hero-badge-dot"></div>
-            Más de 4 años de experiencia en Santiago
-          </div>
-          <h1 class="hero-title">
-            Tu traslado con<br />
-            <em>seguridad absoluta</em><br />
-            y cero estrés
-          </h1>
-          <p class="hero-sub">
-            Mudanzas y fletes en todo Santiago. Puntualidad garantizada, manejo profesional de tus objetos y precios claros desde el primer contacto.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-wa" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20un%20traslado%20en%20Santiago" target="_blank">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.87 0-3.62-.5-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-              Cotizar por WhatsApp
-            </a>
-            <a class="btn btn-outline-dark" href="#servicios">Ver servicios →</a>
-          </div>
-          <div class="hero-stats">
-            <div><div class="stat-num">+4</div><div class="stat-label">Años de experiencia</div></div>
-            <div><div class="stat-num">100%</div><div class="stat-label">Santiago cubierto</div></div>
-            <div><div class="stat-num">$45.000</div><div class="stat-label">Precio base desde</div></div>
-          </div>
-        </div>
-
-        <!-- foto real del camión -->
-        <div class="hero-photo-wrap">
-          <div class="hero-pill-top">Desde $45.000 CLP</div>
-          <img src="images/foto1.jpg" alt="Camión Logística Astorga en Santiago" />
-          <div class="hero-photo-overlay"></div>
-          <div class="hero-photo-badge">
-            <div class="photo-badge-icon">🚛</div>
-            <div>
-              <div class="photo-badge-text">Camión propio · Santiago completo</div>
-              <div class="photo-badge-sub">Respuesta en horas · Lun–Sáb 09:00–17:00</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+<!-- INTRO -->
+<div id="intro">
+  <div id="ipl"></div><div id="ipr"></div>
+  <div class="i-wrap">
+    <div class="i-ring">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <rect x="2" y="10" width="16" height="13" rx="2" fill="white" opacity=".92"/>
+        <path d="M18 15h7l4 6v7H18V15z" fill="white" opacity=".92"/>
+        <rect x="4" y="12" width="8" height="6" rx="1" fill="rgba(192,57,43,.6)"/>
+        <circle cx="8" cy="25" r="2.8" fill="white" opacity=".7"/>
+        <circle cx="26" cy="25" r="2.8" fill="white" opacity=".7"/>
+      </svg>
     </div>
-  </section>
+    <svg id="iTruckSvg" class="i-truck" width="196" height="82" viewBox="0 0 196 82" fill="none">
+      <rect x="40" y="15" width="115" height="48" rx="5" fill="#1B3E6F" stroke="#C0392B" stroke-width="1.5"/>
+      <line x1="96" y1="16" x2="96" y2="62" stroke="rgba(192,57,43,.32)" stroke-width="1"/>
+      <line x1="124" y1="16" x2="124" y2="62" stroke="rgba(192,57,43,.32)" stroke-width="1"/>
+      <text x="100" y="44" text-anchor="middle" font-family="'Syne',sans-serif" font-size="7" fill="white" opacity=".42" font-weight="700">LOGÍSTICA ASTORGA</text>
+      <rect x="5" y="25" width="38" height="38" rx="5" fill="#14305A" stroke="#C0392B" stroke-width="1.5"/>
+      <rect x="9" y="29" width="22" height="15" rx="2" fill="#25D366" opacity=".58"/>
+      <line x1="27" y1="25" x2="27" y2="62" stroke="rgba(192,57,43,.28)" stroke-width="1"/>
+      <rect x="2" y="32" width="4" height="6" rx="1.5" fill="#1B3E6F" stroke="#C0392B" stroke-width=".8"/>
+      <rect x="7" y="53" width="7" height="4" rx="1.5" fill="#FFE066"/>
+      <rect x="5" y="62" width="150" height="8" rx="2" fill="#091D3B"/>
+      <rect x="155" y="60" width="4" height="4" rx="1" fill="#C0392B" opacity=".68"/>
+      <circle cx="20" cy="72" r="9" fill="#0D1F42"/><circle cx="20" cy="72" r="5.5" fill="#244D87"/><circle cx="20" cy="72" r="2.2" fill="#0D1F42"/>
+      <circle cx="138" cy="72" r="9" fill="#0D1F42"/><circle cx="138" cy="72" r="5.5" fill="#244D87"/><circle cx="138" cy="72" r="2.2" fill="#0D1F42"/>
+      <circle cx="158" cy="72" r="9" fill="#0D1F42"/><circle cx="158" cy="72" r="5.5" fill="#244D87"/><circle cx="158" cy="72" r="2.2" fill="#0D1F42"/>
+    </svg>
+    <div class="i-brand">Logística Astorga</div>
+  </div>
+</div>
 
-  <!-- ═══ SERVICIOS ═══ -->
-  <section id="servicios">
-    <div class="container">
-      <div class="services-hdr reveal">
-        <div class="section-tag on-light">Nuestros servicios</div>
-        <h2 class="title-light">Todo tipo de traslado,<br />un solo equipo confiable</h2>
+<div id="toast"></div>
+
+<a id="waFloat" href="https://wa.me/56961822888?text=Hola%2C%20quiero%20cotizar%20un%20traslado" target="_blank" rel="noopener">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+  <span>Cotizar ahora</span>
+</a>
+
+<div id="app">
+
+  <!-- S1 EXPLORACIÓN -->
+  <div id="sExp" class="scr on">
+    <div class="hdr">
+      <div class="hbrand">
+        <div class="hico"><svg width="17" height="17" viewBox="0 0 24 24" fill="white"><rect x="2" y="8" width="13" height="10" rx="1.5"/><path d="M15 11h5l3 5v6h-8V11z"/><circle cx="6" cy="20" r="2.5"/><circle cx="19" cy="20" r="2.5"/></svg></div>
+        <div><div class="hname">Logística Astorga</div><div class="hsub">Mudanzas · Fletes · Santiago</div></div>
       </div>
-      <div class="bento-grid">
-        <div class="service-card reveal reveal-d1">
-          <div class="service-icon">🏠</div>
-          <div class="service-name">Mudanza Residencial</div>
-          <div class="service-desc">Tu hogar en las mejores manos. Movilizamos casas y departamentos con cuidado total en cada objeto.</div>
-          <ul class="service-features">
-            <li>Carga y descarga incluida</li>
-            <li>Manejo de objetos frágiles</li>
-            <li>Muebles y electrodomésticos</li>
-            <li>Puntualidad garantizada</li>
-          </ul>
-          <a class="service-cta" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20una%20mudanza%20residencial" target="_blank">Cotizar mudanza hogar →</a>
+      <div class="hbadge"><div class="hdot"></div>Disponible</div>
+    </div>
+    <div class="crsl-wrap" id="cWrap">
+      <div class="crsl-track" id="cTrack">
+        <div class="slide">
+          <span class="sl-icon">🏠</span>
+          <div class="sl-tag">Servicio principal</div>
+          <h2 class="sl-h">Mudanzas<br/>Residenciales</h2>
+          <p class="sl-p">Desde estudios hasta casas completas. Cargamos, trasladamos y descargamos con cuidado total.</p>
+          <div class="chips"><span class="chip">✓ Embalaje profesional</span><span class="chip">🔒 Seguro en ruta</span><span class="chip">⏰ Llegamos puntual</span></div>
         </div>
-        <div class="service-card reveal reveal-d2">
-          <div class="service-icon">🏢</div>
-          <div class="service-name">Mudanza Corporativa</div>
-          <div class="service-desc">Trasladamos oficinas, empresas y negocios con la discreción y eficiencia que tu operación requiere.</div>
-          <ul class="service-features">
-            <li>Equipos y mobiliario de oficina</li>
-            <li>Coordinación sin interrupciones</li>
-            <li>Fábricas y locales comerciales</li>
-            <li>Horarios a tu medida</li>
-          </ul>
-          <a class="service-cta" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20una%20mudanza%20corporativa" target="_blank">Cotizar mudanza empresa →</a>
+        <div class="slide">
+          <span class="sl-icon">🚀</span>
+          <div class="sl-tag">Rápido y flexible</div>
+          <h2 class="sl-h">Fletes<br/>Express</h2>
+          <p class="sl-p">¿Necesitas mover carga rápido? Llegamos. Cualquier tamaño, cualquier sector de Santiago.</p>
+          <div class="chips"><span class="chip">⚡ Mismo día</span><span class="chip">✓ Sin burocracia</span><span class="chip">💰 Precio directo</span></div>
         </div>
-        <div class="service-card reveal reveal-d3">
-          <div class="service-icon">⚡</div>
-          <div class="service-name">Flete Express</div>
-          <div class="service-desc">¿Necesitas mover algo rápido? Fletes puntuales en todo Santiago para cuando el tiempo vale.</div>
-          <ul class="service-features">
-            <li>Traslado ágil y directo</li>
-            <li>Objetos delicados bienvenidos</li>
-            <li>Coordinas por WhatsApp</li>
-            <li>Precio justo por distancia</li>
-          </ul>
-          <a class="service-cta" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20un%20flete%20express" target="_blank">Cotizar flete express →</a>
+        <div class="slide">
+          <span class="sl-icon">🏢</span>
+          <div class="sl-tag">Para empresas</div>
+          <h2 class="sl-h">Mudanzas<br/>Corporativas</h2>
+          <p class="sl-p">Oficinas, bodegas y locales. Coordinamos todo para que tu operación no se detenga.</p>
+          <div class="chips"><span class="chip">🌙 Fuera de horario</span><span class="chip">📋 Coordinación total</span><span class="chip">🧾 Factura disponible</span></div>
+        </div>
+        <div class="slide">
+          <span class="sl-icon">📍</span>
+          <div class="sl-tag">Cobertura total</div>
+          <h2 class="sl-h">Todo<br/>Santiago</h2>
+          <p class="sl-p">Desde Pudahuel hasta La Reina. Sin zonas excluidas. Precio claro desde el inicio, sin sorpresas.</p>
+          <div class="chips"><span class="chip">🗺️ Todas las comunas</span><span class="chip">✓ Sin cobros ocultos</span><span class="chip">🔒 Precio transparente</span></div>
+        </div>
+        <div class="slide">
+          <span class="sl-icon">⭐</span>
+          <div class="sl-tag">¿Por qué elegirnos?</div>
+          <h2 class="sl-h">+4 Años<br/>de Confianza</h2>
+          <p class="sl-p">Cotización honesta, precio claro, sin letra chica. Más de 4 años moviendo familias y empresas.</p>
+          <div class="chips"><span class="chip">⏱ Cotizamos rápido</span><span class="chip">💳 Todos los pagos</span><span class="chip">📱 WhatsApp directo</span></div>
         </div>
       </div>
     </div>
-  </section>
+    <div class="crsl-foot">
+      <div class="dots" id="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <button class="btn btn-red" id="btnStart">Cotizar mi traslado 🚛</button>
+    </div>
+    <div class="trust">
+      <div class="ti">⭐ <strong>+4 años</strong></div>
+      <div class="ti">🔒 <strong>Seguro</strong> en ruta</div>
+      <div class="ti">💳 <strong>Todos</strong> los pagos</div>
+      <div class="ti">📍 <strong>Todo</strong> Santiago</div>
+      <div class="ti">📱 <strong>WhatsApp</strong></div>
+    </div>
+  </div>
 
-  <!-- ═══ PRECIOS ═══ -->
-  <section id="precios">
-    <div class="container">
-      <div class="reveal" style="margin-bottom:52px">
-        <div class="section-tag on-dark">Transparencia total</div>
-        <h2 class="title-dark">Precios claros,<br />sin sorpresas</h2>
-        <p class="sub-dark" style="margin-top:12px">Porque nadie debería contratar sin saber cuánto paga. Aquí te explicamos cómo cobramos.</p>
+  <!-- S2 PERFILAMIENTO -->
+  <div id="sPrf" class="scr">
+    <div class="hdr">
+      <div class="hbrand">
+        <div class="hico"><svg width="17" height="17" viewBox="0 0 24 24" fill="white"><rect x="2" y="8" width="13" height="10" rx="1.5"/><path d="M15 11h5l3 5v6h-8V11z"/><circle cx="6" cy="20" r="2.5"/><circle cx="19" cy="20" r="2.5"/></svg></div>
+        <div><div class="hname" id="stepTitle">¿Qué necesitas?</div><div class="hsub" id="stepInd">Paso 1 de 4</div></div>
       </div>
-      <div class="pricing-inner">
-        <div class="pricing-highlight reveal">
-          <div class="price-from">Precio base desde</div>
-          <div class="price-big"><span class="price-currency">$</span>45.000</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:4px;">CLP · Incluye carga, descarga y traslado completo</div>
-          <div class="price-note">El precio final varía según la <strong>distancia, el volumen de carga y el tiempo</strong> del servicio. Siempre te cotizamos antes de confirmar.</div>
-          <div class="info-box">
-            <div class="info-box-icon">💬</div>
-            <div class="info-box-text"><strong>¿Cuánto costará tu mudanza?</strong><br />Escríbenos con los detalles y te respondemos con una cotización clara en pocas horas.</div>
+      <div class="hbadge"><div class="hdot"></div>Configurando</div>
+    </div>
+    <div class="prf-body" id="prfBody">
+      <div class="pbar"><div class="pfill" id="pfill" style="width:25%"></div></div>
+
+      <div class="spnl on" id="sp1">
+        <div class="slbl">Paso 1 de 4</div>
+        <h3 class="sq">¿Qué vas<br/>a trasladar?</h3>
+        <div class="opts">
+          <button class="opt" data-field="servicio" data-val="hogar"><span class="oico">🏠</span><span class="otxt"><span class="otit">Mudanza de hogar</span><span class="osub">Departamento, casa o habitación</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="servicio" data-val="empresa"><span class="oico">🏢</span><span class="otxt"><span class="otit">Mudanza de empresa</span><span class="osub">Oficina, local o bodega</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="servicio" data-val="flete"><span class="oico">📦</span><span class="otxt"><span class="otit">Flete / Carga puntual</span><span class="osub">Muebles, electrodomésticos u otros</span></span><span class="ochk"></span></button>
+        </div>
+      </div>
+
+      <div class="spnl" id="sp2">
+        <div class="slbl">Paso 2 de 4</div>
+        <h3 class="sq">¿Cuánto<br/>volumen tienes?</h3>
+        <div class="opts">
+          <button class="opt" data-field="tamano" data-val="pequeno"><span class="oico">📦</span><span class="otxt"><span class="otit">Pequeño</span><span class="osub">Studio o 1-2 piezas / pocos artículos</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="tamano" data-val="mediano"><span class="oico">🛋️</span><span class="otxt"><span class="otit">Mediano</span><span class="osub">3-4 piezas / carga de un camión</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="tamano" data-val="grande"><span class="oico">🏗️</span><span class="otxt"><span class="otit">Grande</span><span class="osub">5+ piezas / mudanza completa</span></span><span class="ochk"></span></button>
+        </div>
+      </div>
+
+      <div class="spnl" id="sp3">
+        <div class="slbl">Paso 3 de 4</div>
+        <h3 class="sq">¿Cuándo lo<br/>necesitas?</h3>
+        <div class="opts">
+          <button class="opt" data-field="urgencia" data-val="express"><span class="oico">⚡</span><span class="otxt"><span class="otit">Hoy o mañana</span><span class="osub">Servicio express · máxima prioridad</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="urgencia" data-val="esta-semana"><span class="oico">📅</span><span class="otxt"><span class="otit">Esta semana</span><span class="osub">Dentro de los próximos 5 días</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="urgencia" data-val="programado"><span class="oico">🗓️</span><span class="otxt"><span class="otit">Con anticipación</span><span class="osub">Más de una semana de plazo</span></span><span class="ochk"></span></button>
+        </div>
+      </div>
+
+      <div class="spnl" id="sp4">
+        <div class="slbl">Paso 4 de 4</div>
+        <h3 class="sq">¿A qué distancia<br/>es el traslado?</h3>
+        <div class="opts">
+          <button class="opt" data-field="distancia" data-val="misma-comuna"><span class="oico">🏘️</span><span class="otxt"><span class="otit">Misma comuna</span><span class="osub">Traslado dentro del mismo sector</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="distancia" data-val="otra-comuna"><span class="oico">🗺️</span><span class="otxt"><span class="otit">Otra comuna de Santiago</span><span class="osub">Entre comunas de la Región Metropolitana</span></span><span class="ochk"></span></button>
+          <button class="opt" data-field="distancia" data-val="fuera-rm"><span class="oico">🛣️</span><span class="otxt"><span class="otit">Fuera de Santiago</span><span class="osub">Traslado a otra ciudad o región</span></span><span class="ochk"></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="pnav">
+      <button class="btnback" id="btnBack">←</button>
+      <button class="btn btn-red" id="btnNext" disabled>Continuar →</button>
+    </div>
+  </div>
+
+  <!-- S3 COTIZACIÓN -->
+  <div id="sCot" class="scr">
+    <div class="hdr">
+      <div class="hbrand">
+        <div class="hico"><svg width="17" height="17" viewBox="0 0 24 24" fill="white"><rect x="2" y="8" width="13" height="10" rx="1.5"/><path d="M15 11h5l3 5v6h-8V11z"/><circle cx="6" cy="20" r="2.5"/><circle cx="19" cy="20" r="2.5"/></svg></div>
+        <div><div class="hname">Cotización estimada</div><div class="hsub">Motor de precios</div></div>
+      </div>
+      <div class="hbadge"><div class="hdot"></div>Calculando</div>
+    </div>
+    <div class="cot-body" id="cotBody">
+      <div id="loader">
+        <div style="font-size:42px">🧮</div>
+        <div class="spin"></div>
+        <div class="lmsg" id="lmsg">Calculando tu cotización...</div>
+      </div>
+      <div id="quote">
+        <div class="qhead">
+          <div id="pbadge" class="pbadge p-plus">● Cliente Plus</div>
+          <div class="qtit">Cotización estimada</div>
+          <div class="qsub">Precio referencial · Sujeto a confirmación</div>
+        </div>
+        <div class="card">
+          <div class="pr"><span class="pk" id="lblSvc">Servicio</span><span class="pv" id="amtSvc">$0</span></div>
+          <div class="pr"><span class="pk">Distancia</span><span class="pv dim" id="amtDist">+ $0</span></div>
+          <div class="pr"><span class="pk">Urgencia</span><span class="pv dim" id="amtUrg">+ $0</span></div>
+          <div class="pr"><span class="pk">Volumen</span><span class="pv dim" id="amtVol">+ $0</span></div>
+        </div>
+        <div class="ptotal">
+          <div><div class="ptlbl">Total estimado</div><div class="ptnote">* Referencial, sin IVA</div></div>
+          <div class="ptval" id="ptval">$0</div>
+        </div>
+        <div class="trow">⏱ Duración estimada: <strong id="timeEst">&nbsp;–</strong></div>
+        <div class="card">
+          <div class="tklbl">Ocupación estimada del camión</div>
+          <div class="tkbar" id="tkbar">
+            <div class="tkbl"></div><div class="tkbl"></div><div class="tkbl"></div>
+            <div class="tkbl"></div><div class="tkbl"></div><div class="tkbl"></div>
+            <div class="tkbl"></div><div class="tkbl"></div>
           </div>
-          <div class="pay-methods">💳 <span>Aceptamos todos los medios de pago</span></div>
         </div>
-        <div>
-          <div class="var-card reveal reveal-d1">
-            <div class="var-icon">📍</div>
-            <div>
-              <div class="var-name">Por distancia</div>
-              <div class="var-desc">El costo base se ajusta según los kilómetros recorridos dentro de Santiago.</div>
-              <div class="var-extra">+ Ajuste por combustible según kilometraje</div>
-            </div>
-          </div>
-          <div class="var-card reveal reveal-d2">
-            <div class="var-icon">📦</div>
-            <div>
-              <div class="var-name">Por volumen</div>
-              <div class="var-desc">El tamaño y cantidad de lo que se traslada influye en el precio final.</div>
-              <div class="var-extra">Envíanos fotos por WhatsApp para una cotización exacta</div>
-            </div>
-          </div>
-          <div class="var-card reveal reveal-d3">
-            <div class="var-icon">⏱️</div>
-            <div>
-              <div class="var-name">Por horas</div>
-              <div class="var-desc">Para traslados que requieren más tiempo, cobramos por hora de trabajo efectivo.</div>
-              <div class="var-extra">Ideal para mudanzas grandes o de varios pisos</div>
-            </div>
-          </div>
-        </div>
+        <button class="btn btn-red" id="btnToForm">Confirmar y agregar datos →</button>
+        <button class="btn btn-ghost gap8" id="btnCotBack">← Cambiar selección</button>
+        <span class="gap18"></span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ═══ DIFERENCIAL ═══ -->
-  <section id="diferencial">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-tag on-light">Por qué elegirnos</div>
-        <h2 class="title-light">Cuidado Absoluto<br />en cada traslado</h2>
-        <p class="sub-light" style="margin-top:12px">Sabemos que lo que trasladamos importa. Por eso trabajamos como si fuera nuestro.</p>
+  <!-- S4 FORMULARIO -->
+  <div id="sFrm" class="scr">
+    <div class="hdr">
+      <div class="hbrand">
+        <div class="hico"><svg width="17" height="17" viewBox="0 0 24 24" fill="white"><rect x="2" y="8" width="13" height="10" rx="1.5"/><path d="M15 11h5l3 5v6h-8V11z"/><circle cx="6" cy="20" r="2.5"/><circle cx="19" cy="20" r="2.5"/></svg></div>
+        <div><div class="hname">Último paso</div><div class="hsub">Datos de contacto</div></div>
       </div>
-      <div class="features-grid">
-        <div class="feat-card reveal reveal-d1">
-          <div class="feat-icon-wrap">🔒</div>
-          <div class="feat-title">Seguridad total</div>
-          <div class="feat-text">Manejo cuidadoso de cada objeto. Cargamos, trasladamos y descargamos con responsabilidad total.</div>
-        </div>
-        <div class="feat-card reveal reveal-d2">
-          <div class="feat-icon-wrap">⏰</div>
-          <div class="feat-title">Puntualidad estricta</div>
-          <div class="feat-text">Llegamos a la hora acordada. Tu tiempo es valioso y lo respetamos sin excusas.</div>
-        </div>
-        <div class="feat-card reveal reveal-d3">
-          <div class="feat-icon-wrap">🏆</div>
-          <div class="feat-title">+4 años de experiencia</div>
-          <div class="feat-text">No somos informales. Somos un servicio consolidado con historial real en Santiago de Chile.</div>
-        </div>
-        <div class="feat-card reveal reveal-d4">
-          <div class="feat-icon-wrap">🎯</div>
-          <div class="feat-title">Carga delicada</div>
-          <div class="feat-text">Cuadros, electrónica, antigüedades o equipos especiales. Tenemos el equipo para trasladarlos.</div>
-        </div>
-      </div>
+      <div class="hbadge"><div class="hdot"></div>Casi listo</div>
     </div>
-  </section>
-
-  <!-- ═══ COBERTURA ═══ -->
-  <section id="cobertura">
-    <div class="container">
-      <div class="coverage-inner">
-        <div class="coverage-map reveal">
-          <div class="map-ring"></div><div class="map-ring"></div><div class="map-ring"></div>
-          <div class="map-icon">📍</div>
-          <div class="map-label">Santiago Completo</div>
-          <div class="map-sublabel">Todas las comunas de la RM</div>
-        </div>
-        <div class="reveal reveal-d2">
-          <div class="section-tag on-dark">Cobertura</div>
-          <h2 class="title-dark" style="margin-bottom:16px">Trabajamos en<br />todo Santiago</h2>
-          <p class="sub-dark" style="margin-bottom:28px">Desde Pudahuel hasta Las Condes, desde Maipú hasta La Florida. Si está en Santiago, llegamos.</p>
-          <div class="coverage-item"><div class="cov-dot"></div><div><div>Norte, Sur, Oriente y Poniente</div><div class="cov-sub">Todas las comunas sin exclusión</div></div></div>
-          <div class="coverage-item"><div class="cov-dot"></div><div><div>Departamentos y casas</div><div class="cov-sub">Con o sin ascensor, pisos altos, pasillos estrechos</div></div></div>
-          <div class="coverage-item"><div class="cov-dot"></div><div><div>Zonas industriales y comerciales</div><div class="cov-sub">Bodegas, fábricas, locales y oficinas</div></div></div>
-          <div style="margin-top:24px">
-            <a class="btn btn-wa" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20un%20traslado%20en%20Santiago" target="_blank">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.87 0-3.62-.5-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-              Consultar disponibilidad
-            </a>
-          </div>
-        </div>
+    <div class="frm-body" id="frmBody">
+      <div class="ftop">Contacto</div>
+      <h3 class="fh">¿A quién le enviamos<br/>la cotización?</h3>
+      <div class="smini">
+        <div class="smtit">Tu solicitud</div>
+        <div class="smrow"><span class="smk">Servicio</span><span class="smv" id="smSvc">–</span></div>
+        <div class="smrow"><span class="smk">Tamaño</span><span class="smv" id="smTam">–</span></div>
+        <div class="smrow"><span class="smk">Urgencia</span><span class="smv" id="smUrg">–</span></div>
+        <div class="smrow"><span class="smk">Distancia</span><span class="smv" id="smDist">–</span></div>
+        <div class="smtotal"><span class="smk">Estimado</span><span class="smtv" id="smTot">–</span></div>
       </div>
+      <div class="fg">
+        <label class="flbl" for="fNombre">Tu nombre</label>
+        <input class="finp" id="fNombre" type="text" placeholder="Ej: María González" autocomplete="name" inputmode="text"/>
+        <div class="fhint" id="hNombre"></div>
+      </div>
+      <div class="fg">
+        <label class="flbl" for="fTel">WhatsApp / Teléfono</label>
+        <input class="finp" id="fTel" type="tel" placeholder="+56 9 1234 5678" autocomplete="tel" inputmode="tel"/>
+        <div class="fhint" id="hTel"></div>
+      </div>
+      <div class="fg">
+        <label class="flbl" for="fOrigen">Sector de origen <span class="opt-lbl">(opcional)</span></label>
+        <input class="finp" id="fOrigen" type="text" placeholder="Ej: Maipú, Lo Prado..." autocomplete="off" inputmode="text"/>
+      </div>
+      <div class="fg">
+        <label class="flbl" for="fDestino">Sector de destino <span class="opt-lbl">(opcional)</span></label>
+        <input class="finp" id="fDestino" type="text" placeholder="Ej: Providencia, Las Condes..." autocomplete="off" inputmode="text"/>
+      </div>
+      <button class="btn btn-wa" id="btnSend">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+        Enviar cotización por WhatsApp
+      </button>
+      <button class="btn btn-ghost gap8" id="btnFrmBack">← Volver a la cotización</button>
+      <span class="gap18"></span>
     </div>
-  </section>
+  </div>
 
-  <!-- ═══ PROCESO ═══ -->
-  <section id="proceso">
-    <div class="container">
-      <div class="reveal" style="text-align:center">
-        <div class="section-tag on-light" style="justify-content:center">Sin complicaciones</div>
-        <h2 class="title-light" style="text-align:center">Así de simple es<br />trabajar con nosotros</h2>
-      </div>
-      <div class="process-steps">
-        <div class="step reveal reveal-d1">
-          <div class="step-num">1</div>
-          <div class="step-title">Escríbenos por WhatsApp</div>
-          <div class="step-desc">Cuéntanos qué necesitas trasladar, desde dónde y hacia dónde.</div>
-          <div class="step-hl">⚡ Respuesta en horas</div>
-        </div>
-        <div class="step reveal reveal-d2">
-          <div class="step-num">2</div>
-          <div class="step-title">Coordinamos todo</div>
-          <div class="step-desc">Te cotizamos, confirmamos fecha, hora y detalles del traslado.</div>
-          <div class="step-hl">📋 Sin letra chica</div>
-        </div>
-        <div class="step reveal reveal-d3">
-          <div class="step-num">3</div>
-          <div class="step-title">Realizamos el servicio</div>
-          <div class="step-desc">Llegamos a la hora. Cargamos, trasladamos y descargamos con cuidado total.</div>
-          <div class="step-hl">🔒 Cuidado absoluto</div>
-        </div>
-        <div class="step reveal reveal-d4">
-          <div class="step-num">4</div>
-          <div class="step-title">Listo, misión cumplida</div>
-          <div class="step-desc">Tu traslado completado con éxito. Acordamos la forma de pago que mejor te acomode.</div>
-          <div class="step-hl">✅ Trabajo bien hecho</div>
-        </div>
-      </div>
-    </div>
-  </section>
+</div><!-- /app -->
 
-  <!-- ═══ GALERÍA ═══ -->
-  <section id="galeria">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-tag on-dark">Nuestro trabajo</div>
-        <h2 class="title-dark">El equipo en acción</h2>
-        <p class="sub-dark" style="margin-top:10px">Trabajos reales, en las calles de Santiago.</p>
-      </div>
-      <div class="gallery-grid">
-        <!-- col 1: foto tall -->
-        <div class="gallery-item tall reveal reveal-d1">
-          <img src="images/foto2.jpg" alt="Camión cargado en calle de Santiago con hojas de otoño" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Carga completa lista para el traslado</div></div>
-        </div>
-        <!-- col 2 fila 1 -->
-        <div class="gallery-item reveal reveal-d2">
-          <img src="images/foto1.jpg" alt="Camión en condominio residencial Santiago" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Mudanza en condominio residencial</div></div>
-        </div>
-        <!-- col 3 fila 1 -->
-        <div class="gallery-item reveal reveal-d3">
-          <img src="images/foto4.jpg" alt="Carga asegurada con lona azul" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Carga protegida y asegurada</div></div>
-        </div>
-        <!-- col 2 fila 2 -->
-        <div class="gallery-item reveal reveal-d2">
-          <img src="images/foto6.jpg" alt="Muebles embalados en plástico para mudanza" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Embalaje profesional de muebles</div></div>
-        </div>
-        <!-- col 3 fila 2 -->
-        <div class="gallery-item reveal reveal-d3">
-          <img src="images/foto7.jpg" alt="Camión en edificio de Santiago" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Mudanza en edificio de Santiago</div></div>
-        </div>
-      </div>
+<!-- POPUP -->
+<div id="popup">
+  <div class="pov" id="pov"></div>
+  <div class="psheet">
+    <div class="phandle"></div>
+    <div class="ptit2">✅ Confirma tu solicitud</div>
+    <div class="crow"><span class="ck">Servicio</span><span class="cv" id="ppSvc">–</span></div>
+    <div class="crow"><span class="ck">Tamaño</span><span class="cv" id="ppTam">–</span></div>
+    <div class="crow"><span class="ck">Urgencia</span><span class="cv" id="ppUrg">–</span></div>
+    <div class="crow"><span class="ck">Distancia</span><span class="cv" id="ppDist">–</span></div>
+    <div class="crow"><span class="ck">Nombre</span><span class="cv" id="ppNom">–</span></div>
+    <div class="crow"><span class="ck">Teléfono</span><span class="cv" id="ppTel">–</span></div>
+    <div class="crow" id="rrOrigen" style="display:none"><span class="ck">Origen</span><span class="cv" id="ppOrigen">–</span></div>
+    <div class="crow" id="rrDestino" style="display:none"><span class="ck">Destino</span><span class="cv" id="ppDestino">–</span></div>
+    <div class="ctotal"><div class="ctlbl">Total estimado</div><div class="ctval" id="ppTot">$0</div></div>
+    <button class="btn btn-wa" id="btnWA">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+      Confirmar y abrir WhatsApp
+    </button>
+    <button class="btnedit" id="btnEdit">✏️ Editar información</button>
+  </div>
+</div>
 
-      <!-- Segunda fila de fotos -->
-      <div class="gallery-grid" style="margin-top:14px">
-        <div class="gallery-item reveal reveal-d1">
-          <img src="images/foto3.jpg" alt="Camión con carga en camino" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">En ruta por Santiago</div></div>
-        </div>
-        <div class="gallery-item reveal reveal-d2">
-          <img src="images/foto8.jpg" alt="Interior del camión con electrodomésticos" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Interior del camión organizado</div></div>
-        </div>
-        <div class="gallery-item reveal reveal-d3">
-          <img src="images/foto5.jpg" alt="Equipo cargando el camión" />
-          <div class="gallery-overlay"><div class="gallery-ol-text">Equipo trabajando en terreno</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+/* ═══════════ ESTADO CENTRAL ═══════════════════════════ */
+const D = {servicio:null,tamano:null,urgencia:null,distancia:null,nombre:'',tel:'',origen:'',destino:''};
+let cotTotal = 0, perfil = 'plus', step = 1, advLock = false;
 
-  <!-- ═══ CTA FINAL ═══ -->
-  <section id="contacto">
-    <div class="container">
-      <div class="cta-inner reveal">
-        <div class="cta-eyebrow">🚛 Logística Astorga · Santiago</div>
-        <h2 class="cta-title">Agenda tu traslado<br />con total confianza</h2>
-        <p class="cta-sub">Más de 4 años moviendo hogares y empresas por todo Santiago. Escríbenos y en pocas horas tienes una cotización clara y honesta.</p>
-        <div class="cta-actions">
-          <a class="btn btn-wa" style="font-size:17px;padding:18px 36px;" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20un%20traslado%20en%20Santiago" target="_blank">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.87 0-3.62-.5-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-            Cotizar por WhatsApp
-          </a>
-          <a class="btn btn-outline-light" href="tel:+56961822888">📞 Llamar directo</a>
-        </div>
-        <div class="cta-trust">
-          <div class="cta-trust-item"><span>✓</span> Cotización en horas</div>
-          <div class="cta-trust-item"><span>✓</span> +4 años de experiencia</div>
-          <div class="cta-trust-item"><span>✓</span> Todo Santiago</div>
-          <div class="cta-trust-item"><span>✓</span> Todos los medios de pago</div>
-        </div>
-      </div>
-    </div>
-  </section>
+const PRECIOS = {
+  base:     {hogar:65000, empresa:110000, flete:38000},
+  tamano:   {pequeno:0, mediano:28000, grande:55000},
+  urgencia: {'express':42000,'esta-semana':20000,'programado':0},
+  distancia:{'misma-comuna':0,'otra-comuna':12000,'fuera-rm':38000}
+};
+const LABELS = {
+  servicio:  {hogar:'Mudanza de hogar', empresa:'Mudanza corporativa', flete:'Flete / Carga'},
+  tamano:    {pequeno:'Pequeño (1-2 piezas)', mediano:'Mediano (3-4 piezas)', grande:'Grande (5+ piezas)'},
+  urgencia:  {'express':'Hoy o mañana ⚡','esta-semana':'Esta semana','programado':'Con anticipación'},
+  distancia: {'misma-comuna':'Misma comuna','otra-comuna':'Otra comuna RM','fuera-rm':'Fuera de Santiago'}
+};
 
-  <!-- ═══ FOOTER ═══ -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <div class="footer-brand">Logística Astorga</div>
-          <div class="footer-loc">📍 Santiago de Chile · Región Metropolitana</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;">Mudanzas y Fletes · Lun–Sáb 09:00–17:00</div>
-        </div>
-        <div class="footer-right">
-          <a class="footer-wa" href="https://wa.me/56961822888?text=Hola%2C%20necesito%20cotizar%20un%20traslado%20en%20Santiago" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.533 4.045 1.47 5.757L.057 23.882a.5.5 0 00.61.633l6.29-1.643A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.87 0-3.62-.5-5.127-1.375l-.367-.22-3.804.994 1.013-3.698-.24-.38A9.794 9.794 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-            +56 9 6182 2888
-          </a>
-          <div class="footer-copy">Todos los medios de pago aceptados</div>
-        </div>
-      </div>
-      <div class="footer-line"></div>
-      <div class="footer-bottom">© <span id="year"></span> Logística Astorga · Santiago de Chile · Todos los derechos reservados</div>
-    </div>
-  </footer>
+/* ═══════════ INTRO ════════════════════════════════════ */
+window.addEventListener('load', () => {
+  // Add vibe class after truck appears
+  setTimeout(() => document.getElementById('iTruckSvg').classList.add('vibe'), 1400);
+  // Split open
+  setTimeout(() => {
+    document.getElementById('intro').classList.add('open');
+    setTimeout(() => {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('waFloat').style.display = 'flex';
+      startToasts();
+    }, 680);
+  }, 2400);
+});
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+/* ═══════════ NAVEGACIÓN ═══════════════════════════════ */
+function goTo(id) {
+  document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
 
-    // Scroll reveal
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* ═══════════ CAROUSEL ══════════════════════════════════ */
+let slide = 0;
+const NSLIDES = 5;
+const cTrack = document.getElementById('cTrack');
+const dots = document.querySelectorAll('.dot');
+let autoT = null;
 
-    // Navbar scroll
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.style.background = window.scrollY > 60 ? 'rgba(10,24,46,0.97)' : 'rgba(20,48,90,0.82)';
-    }, { passive: true });
+function setSlide(n) {
+  slide = ((n % NSLIDES) + NSLIDES) % NSLIDES;
+  cTrack.style.transform = `translateX(-${slide * 100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('on', i === slide));
+}
+dots.forEach((d,i) => d.addEventListener('click', () => { clearInterval(autoT); setSlide(i); scheduleAuto(); }));
+function scheduleAuto() { clearInterval(autoT); autoT = setInterval(() => { if(document.getElementById('sExp').classList.contains('on')) setSlide(slide+1); }, 4200); }
+scheduleAuto();
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const t = document.querySelector(a.getAttribute('href'));
-        if(t) t.scrollIntoView({ behavior:'smooth', block:'start' });
-      });
+// Touch swipe
+let tx0 = 0;
+document.getElementById('cWrap').addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, {passive:true});
+document.getElementById('cWrap').addEventListener('touchend', e => {
+  const dx = tx0 - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 44) { clearInterval(autoT); setSlide(dx > 0 ? slide+1 : slide-1); scheduleAuto(); }
+}, {passive:true});
+
+/* ═══════════ PERFILAMIENTO ════════════════════════════ */
+document.getElementById('btnStart').addEventListener('click', () => {
+  step = 1; renderStep(1); goTo('sPrf');
+});
+document.getElementById('btnBack').addEventListener('click', () => {
+  if (step > 1) { step--; renderStep(step); }
+  else goTo('sExp');
+});
+document.getElementById('btnNext').addEventListener('click', advance);
+
+// Option selection via event delegation
+document.getElementById('prfBody').addEventListener('click', e => {
+  const opt = e.target.closest('.opt');
+  if (!opt) return;
+  const field = opt.dataset.field, val = opt.dataset.val;
+  // deselect siblings
+  opt.closest('.opts').querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('sel');
+    o.querySelector('.ochk').textContent = '';
+  });
+  opt.classList.add('sel');
+  opt.querySelector('.ochk').textContent = '✓';
+  D[field] = val;
+  document.getElementById('btnNext').disabled = false;
+  // auto-advance with lock to prevent double-fire
+  if (!advLock) { advLock = true; setTimeout(() => { advance(); advLock = false; }, 390); }
+});
+
+function advance() {
+  const fields = ['servicio','tamano','urgencia','distancia'];
+  if (!D[fields[step-1]]) return;
+  if (step < 4) { step++; renderStep(step); }
+  else { runCotizacion(); }
+}
+
+function renderStep(n) {
+  document.querySelectorAll('.spnl').forEach(p => p.classList.remove('on'));
+  const panel = document.getElementById('sp'+n);
+  panel.classList.add('on');
+
+  const prog = [25,50,75,100];
+  document.getElementById('pfill').style.width = prog[n-1] + '%';
+  document.getElementById('stepInd').textContent = 'Paso ' + n + ' de 4';
+  const titles = ['¿Qué necesitas?','¿Cuánto tienes?','¿Cuándo lo necesitas?','¿Qué distancia?'];
+  document.getElementById('stepTitle').textContent = titles[n-1];
+
+  const fields = ['servicio','tamano','urgencia','distancia'];
+  document.getElementById('btnNext').disabled = !D[fields[n-1]];
+
+  // Restore prev selection visually
+  const val = D[fields[n-1]];
+  if (val) {
+    panel.querySelectorAll('.opt').forEach(o => {
+      const match = o.dataset.val === val;
+      o.classList.toggle('sel', match);
+      o.querySelector('.ochk').textContent = match ? '✓' : '';
     });
+  }
+  document.getElementById('prfBody').scrollTop = 0;
+}
 
-    // Hero content entrance
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.hero-content > *').forEach((el, i) => {
-        el.style.cssText = `opacity:0;transform:translateY(22px);transition:opacity .7s ease ${i*.12}s,transform .7s ease ${i*.12}s`;
-        setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 60);
-      });
-      const phw = document.querySelector('.hero-photo-wrap');
-      if(phw){
-        phw.style.cssText = 'opacity:0;transform:translateX(30px);transition:opacity .9s ease .35s,transform .9s ease .35s';
-        setTimeout(() => { phw.style.opacity='1'; phw.style.transform='translateX(0)'; }, 60);
-      }
-    });
-  </script>
+/* ═══════════ COTIZACIÓN ENGINE ════════════════════════ */
+function calcPrices() {
+  const b = PRECIOS.base[D.servicio] || 0;
+  const t = PRECIOS.tamano[D.tamano] || 0;
+  const u = PRECIOS.urgencia[D.urgencia] || 0;
+  const d = PRECIOS.distancia[D.distancia] || 0;
+  const total = b + t + u + d;
+  cotTotal = total;
+  perfil = total < 80000 ? 'std' : total < 150000 ? 'plus' : 'prem';
+  return {base:b, vol:t, urg:u, dist:d, total};
+}
+
+function clp(n) { return '$' + n.toLocaleString('es-CL'); }
+
+function animNum(id, to, prefix) {
+  const el = document.getElementById(id);
+  if (to === 0) { el.textContent = (prefix||'') + clp(0); return; }
+  const STEPS = 22, MS = 550;
+  let i = 0;
+  const iv = setInterval(() => {
+    i++;
+    el.textContent = (prefix||'') + clp(Math.round(to * i / STEPS));
+    if (i >= STEPS) { clearInterval(iv); el.textContent = (prefix||'') + clp(to); }
+  }, MS / STEPS);
+}
+
+function runCotizacion() {
+  goTo('sCot');
+  const pr = calcPrices();
+  // Reset
+  document.getElementById('loader').style.display = 'flex';
+  document.getElementById('quote').style.display = 'none';
+  document.getElementById('cotBody').scrollTop = 0;
+  document.getElementById('lmsg').textContent = 'Calculando tu cotización...';
+
+  const msgs = ['Calculando tu cotización...', 'Ajustando por distancia y urgencia...', '¡Listo!'];
+  let mi = 0;
+  const iv = setInterval(() => {
+    mi++;
+    if (mi < msgs.length) document.getElementById('lmsg').textContent = msgs[mi];
+    else { clearInterval(iv); showQuote(pr); }
+  }, 700);
+}
+
+function showQuote(pr) {
+  document.getElementById('loader').style.display = 'none';
+  const q = document.getElementById('quote');
+  q.style.display = 'block';
+
+  // Badge
+  const badges = {std:{c:'p-std',t:'● Servicio Estándar'},plus:{c:'p-plus',t:'● Servicio Plus'},prem:{c:'p-prem',t:'★ Servicio Premium'}};
+  const bm = badges[perfil];
+  const b = document.getElementById('pbadge');
+  b.className = 'pbadge ' + bm.c; b.textContent = bm.t;
+
+  // Labels
+  const svclbls = {hogar:'Mudanza de hogar', empresa:'Mudanza corporativa', flete:'Flete / Carga'};
+  document.getElementById('lblSvc').textContent = svclbls[D.servicio] || 'Servicio';
+
+  // Numbers
+  animNum('amtSvc', pr.base);
+  animNum('amtDist', pr.dist, '+ ');
+  animNum('amtUrg', pr.urg, '+ ');
+  animNum('amtVol', pr.vol, '+ ');
+  setTimeout(() => animNum('ptval', pr.total), 380);
+
+  // Time estimate
+  const te = {pequeno:'2-3 horas', mediano:'4-6 horas', grande:'6-10 horas'};
+  document.getElementById('timeEst').textContent = te[D.tamano] || '4-6 horas';
+
+  // Truck meter
+  const fills = {pequeno:3, mediano:5, grande:8};
+  const n = fills[D.tamano] || 5;
+  document.querySelectorAll('#tkbar .tkbl').forEach((bl, i) => {
+    bl.classList.remove('on');
+    if (i < n) setTimeout(() => bl.classList.add('on'), 80 + i*65);
+  });
+}
+
+/* ═══════════ FORM ENGINE ══════════════════════════════ */
+document.getElementById('btnToForm').addEventListener('click', () => {
+  document.getElementById('smSvc').textContent  = LABELS.servicio[D.servicio]   || '–';
+  document.getElementById('smTam').textContent  = LABELS.tamano[D.tamano]       || '–';
+  document.getElementById('smUrg').textContent  = LABELS.urgencia[D.urgencia]   || '–';
+  document.getElementById('smDist').textContent = LABELS.distancia[D.distancia] || '–';
+  document.getElementById('smTot').textContent  = clp(cotTotal);
+  goTo('sFrm');
+});
+document.getElementById('btnCotBack').addEventListener('click', () => { step = 4; renderStep(4); goTo('sPrf'); });
+document.getElementById('btnFrmBack').addEventListener('click', () => goTo('sCot'));
+
+// Validation
+document.getElementById('fNombre').addEventListener('input', function() {
+  D.nombre = this.value.trim();
+  const ok = D.nombre.length >= 2;
+  this.className = 'finp' + (ok?' ok':'');
+  setHint('hNombre', ok?'✓ Nombre válido':'', ok?'ok':'');
+});
+document.getElementById('fTel').addEventListener('input', function() {
+  D.tel = this.value.trim();
+  const ok = D.tel.replace(/\D/g,'').length >= 8;
+  this.className = 'finp' + (ok?' ok':'');
+  setHint('hTel', ok?'✓ Número válido':'', ok?'ok':'');
+});
+function setHint(id, txt, cls) {
+  const h = document.getElementById(id);
+  h.textContent = txt;
+  h.className = 'fhint' + (cls?' '+cls:'');
+}
+function errField(inpId, hintId, msg) {
+  const el = document.getElementById(inpId);
+  el.className = 'finp err';
+  setHint(hintId, msg, 'err');
+  el.focus();
+  setTimeout(() => { el.className = 'finp'; }, 380);
+}
+
+document.getElementById('btnSend').addEventListener('click', () => {
+  const nombre = document.getElementById('fNombre').value.trim();
+  const tel    = document.getElementById('fTel').value.trim();
+  D.origen  = document.getElementById('fOrigen').value.trim();
+  D.destino = document.getElementById('fDestino').value.trim();
+  if (nombre.length < 2) { errField('fNombre','hNombre','⚠ Por favor ingresa tu nombre'); return; }
+  if (tel.replace(/\D/g,'').length < 8) { errField('fTel','hTel','⚠ Ingresa un número válido'); return; }
+  D.nombre = nombre; D.tel = tel;
+  openPopup();
+});
+
+/* ═══════════ POPUP ════════════════════════════════════ */
+function openPopup() {
+  document.getElementById('ppSvc').textContent  = LABELS.servicio[D.servicio]   || '–';
+  document.getElementById('ppTam').textContent  = LABELS.tamano[D.tamano]       || '–';
+  document.getElementById('ppUrg').textContent  = LABELS.urgencia[D.urgencia]   || '–';
+  document.getElementById('ppDist').textContent = LABELS.distancia[D.distancia] || '–';
+  document.getElementById('ppNom').textContent  = D.nombre;
+  document.getElementById('ppTel').textContent  = D.tel;
+  document.getElementById('ppTot').textContent  = clp(cotTotal);
+  const or = document.getElementById('rrOrigen'),  dr = document.getElementById('rrDestino');
+  if (D.origen)  { document.getElementById('ppOrigen').textContent  = D.origen;  or.style.display='flex'; } else or.style.display='none';
+  if (D.destino) { document.getElementById('ppDestino').textContent = D.destino; dr.style.display='flex'; } else dr.style.display='none';
+  document.getElementById('popup').classList.add('on');
+}
+function closePopup() { document.getElementById('popup').classList.remove('on'); }
+document.getElementById('pov').addEventListener('click', closePopup);
+document.getElementById('btnEdit').addEventListener('click', closePopup);
+
+/* ═══════════ WHATSAPP MESSAGE ENGINE ══════════════════ */
+function buildMsg() {
+  const l = LABELS;
+  const pTxt = {std:'Estándar', plus:'Plus', prem:'Premium'};
+  let m = 'Hola, quiero cotizar un traslado 👋\n\n';
+  m += '🚛 *SOLICITUD DE COTIZACIÓN*\n';
+  m += '📋 Servicio: ' + l.servicio[D.servicio] + '\n';
+  m += '📦 Volumen: '  + l.tamano[D.tamano]     + '\n';
+  m += '⏱ Urgencia: ' + l.urgencia[D.urgencia]  + '\n';
+  m += '📍 Distancia: '+ l.distancia[D.distancia]+ '\n';
+  if (D.origen)  m += '🏠 Origen: '  + D.origen  + '\n';
+  if (D.destino) m += '📌 Destino: ' + D.destino + '\n';
+  m += '\n💰 Precio estimado: ' + clp(cotTotal) + '\n';
+  m += '⭐ Perfil: ' + pTxt[perfil] + '\n\n';
+  m += '👤 Nombre: ' + D.nombre + '\n';
+  m += '📱 Teléfono: ' + D.tel  + '\n\n';
+  m += perfil === 'prem'
+    ? '¿Pueden confirmar disponibilidad y condiciones del servicio?'
+    : '¿Me pueden enviar la cotización final? ¡Gracias!';
+  return encodeURIComponent(m);
+}
+document.getElementById('btnWA').addEventListener('click', () => {
+  window.open('https://wa.me/56961822888?text=' + buildMsg(), '_blank', 'noopener');
+  closePopup();
+});
+
+/* ═══════════ TOAST ACTIVIDAD ══════════════════════════ */
+function startToasts() {
+  const comunas = ['Providencia','Las Condes','Ñuñoa','Maipú','La Florida','Pudahuel','Vitacura','San Miguel','Macul','Lo Barnechea','Peñalolén','Recoleta','Santiago Centro'];
+  const actos   = ['cotizó una mudanza en','pidió un flete en','agendó su traslado en','solicitó cotización en'];
+  const tiempos = ['hace 1 min','hace 3 min','hace 5 min','hace 8 min','hace 2 min'];
+
+  const show = () => {
+    const t = document.getElementById('toast');
+    t.textContent = '👤 Alguien '
+      + actos[0|Math.random()*actos.length]   + ' '
+      + comunas[0|Math.random()*comunas.length]+ ' '
+      + tiempos[0|Math.random()*tiempos.length];
+    t.classList.add('on');
+    setTimeout(() => t.classList.remove('on'), 3200);
+  };
+  setTimeout(show, 3800);
+  setInterval(show, 24000);
+}
+</script>
 </body>
 </html>
